@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "probeersel"
+version = "0.1.0"
+description = ""
+authors = ["fauve.wevers <fauve.wevers@6gorillas.nl>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+chainlit = "^0.5.0"
+openai = "^0.27.8"
+chromadb = "^0.3.26"
+tiktoken = "^0.4.0"
+pypdf = "^3.12.0"
+langchain = "0.0.331"
+sentence-transformers = "^2.2.2"
+cohere = "^4.32"
+jsonlines = "^4.0.0"
+snowflake-snowpark-python = ">=1.0.0"
+python-dotenv = "^1.0.0"
+snowflake-connector-python = {extras = ["pandas"], version = "^3.2.1"}
+pyspark = "^3.5.0"
+wheel = "^0.41.3"
+wrapt = "^1.16.0"
+opentelemetry-semantic-conventions = "^0.42b0"
+tokenizers = "^0.14.1"
+regex = "2023.10.3"
+safetensors = "0.4.0"
+sentencepiece = "0.1.99"
+transformers = "4.35.0"
+MarkupSafe = "2.1.3"
+jinja2 = "3.1.2"
+mpmath = "1.3.0"
+networkx = "3.1"
+pillow = "10.1.0"
+sympy = "1.12"
+torch = "2.1.0"
+torchvision = "0.16.0"
+openpyxl = "^3.1.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
