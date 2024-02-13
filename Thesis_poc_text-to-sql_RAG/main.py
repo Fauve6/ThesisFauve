@@ -69,7 +69,7 @@ else:
     #print(vectordb._collection.count())
 
     #llm = ChatOpenAI(model_name="gpt-4", temperature=0)
-    llm = ChatOpenAI(model_name="ft:gpt-3.5-turbo-1106:personal:english-1106:8mflBs4h", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo-1106", temperature=0)
     # llm = Ollama(model="codellama",
     #              callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]))
 

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "probeersel"
+name = "Thesis_poc_text-to-sql_RAG"
 version = "0.1.0"
 description = ""
 authors = ["fauve.wevers <fauve.wevers@6gorillas.nl>"]

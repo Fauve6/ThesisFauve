@@ -1,0 +1,168 @@
+How many patients live in Amsterdam?
+Can you please outline to me how many individuals with a medical condition are currently registered in Amsterdam?
+Can you please tell me how many patients are dead in total?
+How many patients are deceased?
+Please provide me with an overview of all the umbrella organizations that exist.
+Can you please provide me with an overview of all the existing umbrella organizations?
+How many treatments are still pending?
+I would like to know how many unfinished treatments are currently pending?
+I would like to have an overview of all potential care pathways
+Please provide an overview of all potential pathways for care delivery
+What insurance companies were added in 2006?
+Which insurance companies were added in 2006?
+How many care pathways have the name 'Care Pathway 1'?
+How many care pathways are named 'Care Pathway 1'?
+Please provide me with all care pathway IDs in alphabetical order by name, descending.
+May I request that you provide me with all care pathway identification numbers in a descending order, sorted by name?
+Can you provide me with a list of resources currently in use?
+Give me all the active resources
+Give me the names of the patient groups
+Could you provide me the list of patient groups?
+Please provide me with all appointments for the past year
+Please provide me with a list of all appointments that have taken place during the past calendar year.
+Which clients choose to receive a text message in advance?
+Which clients prefer to receive a text message in advance?
+Which clients are deleted from the database?
+Which clients have been deleted from the database?
+What are the different types of appointments?
+Please provide me with information regarding the various categories of appointments.
+Show me all text messages sent.
+Please provide me with a view of all text messages sent
+Please show me the treatments that are closed.
+Please show me all closed treatments.
+Show me the additional insurances.
+Please show me all additional insurances.
+Provide me with the start date of all treatments.
+Please provide me with the start date of each treatment.
+Show me all care pathways, sorted by start date.
+Provide all care pathways sorted by start date
+Retrieve the IDs of all participants.
+Provide me with the identification numbers of all participants.
+How long does a medication call usually take?
+How long does a medication call take normaly?
+Please provide me with the ids of the product instances where the cost is 500 Euros
+Please provide me with the identification numbers of the product instances where the cost is equal to five hundred Euros.
+Please provide me with all the treatments started in 2020
+Please show me all the treatments started in the year two thousand and twenty.
+What packages are there?
+Can you provide me with an overview of the different packages?
+What type of referral organizations are there?
+Can you provide me with information on the various types of referral organizations?
+Give me all patient groups sorted by start date
+Show me all patient groups sorted by start date.
+Please give me the number of zpm consultations that have the type 'individual'
+How many individual zpm consultations are there
+Please show me the zpm consultations that started in the morning.
+Please show me the healthcare model consultations that started in the morning.
+I want the data of female staff older than 50.
+Please provide me with the data of female staff who are over the age of 50.
+I want to know all the clinics in Utrecht
+Please provide me with a comprehensive list of all the medical facilities located in Utrecht
+How often is tinnitus reported?
+To what extent has tinnitus been reported in the database?
+Show me a list of all patients from abroad.
+Provide me with a list of all foreign patients.
+I want an overview by function of how many employees are employed.
+I want to know how many employees by function.
+Please show me the phone numbers of patients named 'Meis' in care pathway 'Care Pathway 2'.
+Please give me the phone numbers of patients named 'Meis', who have a care pathway named 'Care Pathway 2'.
+Please give me the email address of all patients who live on Canal Street who are over 60 years old.
+Could you provide me with the email addresses of patients who are over sixty years old and have their residential address on Canal Street?
+Please provide me with the clients for whom the email address has not yet been entered
+Which clients are missing the email address?
+What is the ratio of men to women in my institution?
+Can you inform me regarding the gender distribution within my current institutional setting?
+Which patients do we know the bsn number, but not what type of identity identification is?,
+Which patients have a BSN number, but whose identification type we do not know?
+Please provide me with a list of all appointments on May 6, 2020 by noon.
+Can you please provide me with a list of all scheduled appointments on the morning of May 6, 2020, before noon?
+How many people have insurance?
+How many clients are insured?
+Please provide me with a list of the policy numbers of clients where the insurance check was done for 2019.
+Can I receive a list of the policy numbers of patients where the insurance check was done before the year 2019
+What is the average age of my patient population and how many patients do I have in total?
+Can you provide me with the average age of my patient population as well as the total number of patients in my care facility?
+Please provide me with a list of patients and their care pathways in which a care pathway has been cancelled.
+Please provide me with a list of patients and their respective care pathways in which a care pathway has been cancelled
+Please show me all cancellations where the reason was illness
+Please show me all cancellations where the motivation was illness
+Please show me the total number of the various coverage types, with the most declined at the top.
+Please provide me with an overview of the numbers of the various coverage categories, arranged by frequency of occurrence in descending order.
+Please show me all types of appointments that last longer than 30 minutes, except evaluations.
+Please show me the various types of appointments that have a duration of more than half an hour, excluding evaluations.
+Please provide me with all caregivers and show if they are still employed at their practice
+Please provide me with a list of all caregivers and indicate if they are currently still active at their practice.
+Provide me with the first and last names of clients who live in Amsterdam and are female
+I would like the names of female clients who currently reside in Amsterdam.
+Provide me with the number of appointments per clinic per year sorted by year
+Provide me with the numbers of appointments per clinic, sorted by year of appointment.
+Retrieve the messages of all textmessages that contain 'bas'
+Obtain the messages of all text messages in which the term 'bas' is present.
+Retrieve all email addresses in which 'gmail' is present.
+Collect the email addresses in which the domain 'gmail' is included.
+Provide me with the names and account names of employees that have been deactivated, along with the date it was deactivated.
+Show me the names and account names of inactive employees, along with the deactivation date.
+Provide me with all health care providers, their practice names, and show if they are still employed at their practice.
+Provide me with a listing of health care providers with their respective practice names, and show if they are still active at their practice.
+By clinic type, how many clinics are there?
+How many institutions are registered by clinic type?
+What is the role of Hannah Hendriks and what is her contact email address?
+What role does user Hannah Hendriks have within the organization and at what email address can I reach her?
+Please provide me with the names of all patients along with the date of their initial appointment with us
+Please show me the names of all clients and the date of their initial consultation with our organization
+Please provide me with the email address of Tom Winter
+Please provide me with the email address of the individual named Tom Winter.
+What care pathways does Jelle Belfor currently have?
+What care pathways is Jelle Belfor currently following?
+What is the number of patients with supplemental insurance?
+How many patients have supplemental insurance?
+Please give me an overview of the 5 most common treatments
+What are the five most common treatments?
+What appointments has client Niels Jong had?
+Can you please inform me of the appointments that client Niels Jong has had?
+Please give me an overview of the treatments that client 39 has had.
+Would you be so kind as to provide me with a listing of the treatments received by client 39?
+Please show me the first 250 treatments and care pathways, including their IDs.
+Show all treatments and care pathway IDs, limited to the first 250 results.
+Please provide me with each patient's initial appointment
+Show me each individual patient's initial appointment.
+I would like a summary of how many patients there are by age group '<25', '25-49', '50-74', and '>74'
+Provide me with a listing of the number of patients grouped by age categories '<25', '25-49', '50-74', and '>74'
+How many patients were registered per month over the past year?
+I would like a detailed representation of the number of patients registered monthly during the past year.
+Please provide me with all of Liesbeth Bruijn's appointments during 2018.
+Please provide me with a listing of all of Liesbeth Bruijn's appointments during the year 2018.
+Which umbrella organization do the insured clients belong to?
+Which umbrella organization serves the insured clients?
+Give me a list of patients and their treatments that have not yet been performed. Sort the overview by last name.
+Please provide me with an overview of patients and their treatments that have not yet been performed, sorted by last name.
+Please provide me with all treatments regarding patient 3 that were performed after 2015.
+Please provide me with an overview of treatments performed regarding patient 3 that occurred after the year 2015.
+Provide me with all appointments made in 2023 at the patient's home, with the latest updated appointment at the top.
+Provide me with a list of appointments scheduled in 2023 at the patient's home, sorted by the most recently updated appointment, with the newest one at the top.
+Provide me with the start dates of all Hanna Donkelaar's care pathways, oldest at the top.
+Provide me with the start dates of Hanna Donkelaar's various care pathways, with the oldest created care pathways presented first.
+Provide me the start date and end date of the most recently started care pathway of Stefanie Van Norden
+Provide me the start and end date of the most recently started care pathway of Stefanie Van Norden
+What is the reference type of patient Theo Loon?
+Please provide me with the reference type of patient Theo Loon?
+Please provide me with the names and emails of both patients and staff.
+Please provide me with the first name, last name and email addresses of both patients and staff.
+Does patient Martin Veen have any privacy concerns?
+Does patient Martin Veen have privacy concerns?
+Retrieve the names of the initial 666 mental health clinics, sorted by phone number.
+Provide the names of the initial 666 mental health clinics, sorted by phone number.
+Retrieve the AGB codes of the initial two hundred uzovi companies, sorted by the AGB code.
+Provide the AGB codes of the initial two hundred uzovi companies, sorted by AGB code.
+Provide me with the place of residence and year of entry date of clients who have not been removed and do not have an email address
+Show me the place of residence and year of entry of non-removed clients with no registered email address
+Show me per client the number of active forms that have not been removed, and the number of unique practitioners who have created these forms.
+Show me per client the number of un-deleted, active forms and the number of associated unique practitioners who created the form.
+Show me all open and closed treatments for basic mental health care
+Show me the treatments in basic mental health care, only ongoing and completed.
+How many tasks has Mr. Floris Gruijters completed?
+How many activities has Mr. Floris Gruijters completed?
+Show me all the care pathway names after 2020, and count how many there are of each care pathway, sorted in alphabetical order.
+Show me the care pathway names started after 2020, and give the number of each care pathway, sorted in alphabetical order.
+Show me how many insurances each umbrella organization has.
+How many insurances does each umbrella organization contain?

@@ -1,0 +1,19 @@
+questions,answers
+Hoeveel taken heeft meneer Floris Gruijters voltooid?,SELECT count(*) FROM employee LEFT JOIN basicmhcactivity on employee.id = basicmhcactivity.employee_id WHERE employee.firstname = 'Floris' and employee.surname = 'Gruijters' and basicmhcactivity.performed = 1
+Hoeveel activiteiten heeft de heer Floris Gruijters uitgevoerd?,SELECT count(*) FROM employee LEFT JOIN basicmhcactivity on employee.id = basicmhcactivity.employee_id WHERE employee.firstname = 'Floris' and employee.surname = 'Gruijters' and basicmhcactivity.performed = 1
+Laat mij alle verstuurde smsjes zien.,SELECT message FROM textmessage
+Ik verzoek je mij een weergave te verschaffen van alle verzonden sms-berichten.,SELECT message FROM textmessage
+Hoeveel behandelingen staan nog open?,SELECT Count(*) FROM behandeling WHERE STATUS = 'open'
+Ik wil graag weten hoeveel onvoltooide behandelingen er momenteel nog in behandeling zijn?,SELECT Count(*) FROM behandeling WHERE STATUS = 'open'
+Geef me de klanten waarbij het emailadres nog niet is ingevuld,"SELECT patient.id, patient.roepnaam, patient.eigennaam FROM patient LEFT JOIN patient_email on patient_email.patient_id = patient.id WHERE patient_email.email is NULL and patient.email = ''"
+Voor welke cliënten ontbreekt het emailadres?,"SELECT patient.id, patient.roepnaam, patient.eigennaam FROM patient LEFT JOIN patient_email on patient_email.patient_id = patient.id WHERE patient_email.email is NULL and patient.email = ''"
+Toon me een lijst van alle patiënten uit het buitenland.,SELECT patient.* FROM patient LEFT JOIN systemcountry ON systemcountry.id = patient.land_id WHERE systemcountry.NAME != 'Nederland'
+Geef me een lijst met alle buitenlandse patiënten.,SELECT patient* FROM patient LEFT JOIN systemcountry ON systemcountry.id = patient.land_id WHERE systemcountry.NAME != 'Nederland'
+Ik wil de data van vrouwelijke werknemers ouder dan 50.,"SELECT * FROM employee WHERE datediff(year, BIRTHDATE, current_date()) > 50 and GENDER = 2"
+Verstrek mij de gegevens van vrouwelijke personeelsleden die de leeftijd van 50 jaar overschrijden.,"SELECT * FROM employee WHERE datediff(year, BIRTHDATE, current_date()) > 50 and GENDER = 2"
+Geef mij de startdatum van alle behandelingen,SELECT startdatum FROM behandeling
+Verstrek mij de aanvangsdatum van iedere behandeling.,SELECT startdatum FROM behandeling
+Wat zijn de verschillende soorten afspraken?,SELECT name FROM appointmenttype GROUP BY name
+Kunt u mij informeren omtrent de diverse categorieën van afspraken?,SELECT name FROM appointmenttype GROUP BY name
+Geef me alle behandelingen van patient 3 die uitgevoerd zijn na 2015.,"SELECT behandeling.*, behandelingggz_systeemggzactiviteit.uitvoerdatum FROM behandeling LEFT JOIN behandelingggz_systeemggzactiviteit on behandelingggz_systeemggzactiviteit.behandeling_id = behandeling.id LEFT JOIN zorgtraject on behandeling.zorgtraject_id = zorgtraject.id LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE patient.id = 3 and YEAR(behandelingggz_systeemggzactiviteit.uitvoerdatum) > 2015 ORDER BY behandeling.id"
+Verschaf mij een overzicht van de uitgevoerde behandelingen betreffende patiënt 3 die hebben plaatsgevonden na het jaar 2015.,"SELECT behandeling.*, behandelingggz_systeemggzactiviteit.uitvoerdatum FROM behandeling LEFT JOIN behandelingggz_systeemggzactiviteit on behandelingggz_systeemggzactiviteit.behandeling_id = behandeling.id LEFT JOIN zorgtraject on behandeling.zorgtraject_id = zorgtraject.id LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE patient.id = 3 and YEAR(behandelingggz_systeemggzactiviteit.uitvoerdatum) > 2015 ORDER BY behandeling.id"

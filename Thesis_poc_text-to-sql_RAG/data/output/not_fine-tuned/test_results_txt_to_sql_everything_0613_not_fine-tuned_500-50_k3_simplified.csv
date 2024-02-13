@@ -1,0 +1,173 @@
+questions,answers_GPT3_5,answers_golden_standard
+Geef me de voornamen van alle werknemers.,SELECT voorletters FROM systeemzorgverlener,SELECT FIRSTNAME FROM employee
+Mag ik u verzoeken mij de voornamen van alle werknemers te verstrekken?,SELECT voorletters FROM systeemzorgverlener,SELECT FIRSTNAME FROM employee
+Zou u mij kunnen informeren over de verschillende soorten behandelingen die beschikbaar zijn?,"SELECT DISTINCT type
+FROM patientgroup",SELECT behandelingtype FROM behandeling GROUP BY behandelingtype
+Welke behandelingstypes zijn er?,SELECT DISTINCT behandelingtype FROM behandeling,SELECT behandelingtype FROM behandeling GROUP BY behandelingtype
+Welke afspraken waren er op zeven mei 2020?,SELECT * FROM `systeemzorgverlener_zorginstelling` WHERE `datumtoetreding` = '2020-05-07',SELECT * FROM appointment WHERE CAST(INTERVALSTART AS date) = '2020-05-07'
+Zou u mij kunnen informeren omtrent de geplande afspraken die op zeven mei twintig twintig gepland stonden?,SELECT * FROM `systeemzorgverlener_zorginstelling` WHERE `datumtoetreding` = '2020-05-07',SELECT * FROM appointment WHERE CAST(INTERVALSTART AS date) = '2020-05-07'
+Hoeveel werknemers heb ik in mijn instelling?,SELECT COUNT(*) FROM systeemzorgverlener_zorginstelling WHERE systeemzorginstelling_id = [id van de instelling],SELECT count(*) FROM employee
+Zou u mij kunnen informeren omtrent het exacte aantal personeelsleden dat momenteel werkzaam is binnen mijn institutionele setting?,SELECT COUNT(*) FROM systeemzorgverlener_zorginstelling WHERE statusinpraktijk = 1 AND verwijderd = 'nee' AND invoer = 'vektis' AND systeemzorginstelling_id = [institutionele setting id],SELECT count(*) FROM employee
+Geef me alle cliënten die in een eengezinswoning wonen.,"SELECT *
+FROM systeemzorgverlener
+WHERE adresstraatnaam = 'eengezinswoning'",SELECT * FROM patient WHERE HOUSETYPE = 'EENGEZW'
+Kun je me een lijst verstrekken van alle individuen die momenteel hun verblijfplaats hebben in een eengezinswoning?,"SELECT *
+FROM systeemmaatschappijnl
+WHERE organisatievorm = 'particulier' AND adresplaats = 'eengezinswoning'",SELECT * FROM patient WHERE HOUSETYPE = 'EENGEZW'
+Bij welke patiënten is het patient portaal geactiveerd?,SELECT * FROM `patient` WHERE `ispatientportalactivated` = 1,SELECT * FROM patient WHERE ispatientportalactivated = 1
+Kun je mij vertellen welke patiënten momenteel hun patiëntportaal hebben geactiveerd?,"SELECT DISTINCT patient_id
+FROM assurantienl
+WHERE verzekerd = 'ja'",SELECT * FROM patient WHERE ispatientportalactivated = 1
+Wat is de functie van gebruiker Bosman?,"Ik kan de functie van gebruiker Bosman niet beantwoorden, omdat er geen informatie over gebruikers of functies in de gegeven context staat.",SELECt function FROM employee WHERE abbreviation = 'Bosman'
+Welke functie heeft gebruiker Bosman binnen de organisatie?,Het antwoord kan niet worden beantwoord met de gegeven context. Er is geen tabel of kolom die informatie bevat over de functie van gebruiker Bosman binnen de organisatie.,SELECt function FROM employee WHERE abbreviation = 'Bosman'
+Laat me vijf afspraken zien,SELECT * FROM afspraken LIMIT 5,SELECT top 5 * FROM appointment
+Mag ik u vriendelijk verzoeken vijf geplande afspraken aan mij te tonen?,SELECT * FROM `patientgroup` LIMIT 5,SELECT top 5 * FROM appointment
+Toon me alle afspraken van 2023,SELECT * FROM afspraken WHERE YEAR(datum) = 2023,SELECT * FROM appointment WHERE YEAR(created) = 2023
+Laat me alle gemaakte afspraken uit 2023 zien,"SELECT *
+FROM gemaakte_afspraken
+WHERE YEAR(afspraak_datum) = 2023",SELECT * FROM appointment WHERE YEAR(created) = 2023
+Laat mij alle afmeldingen zien.,SELECT * FROM systeemzorgverlener_zorginstelling WHERE verwijderd = 'ja',SELECT * FROM appointmentparticipation WHERE absent = 1
+Verschaf mij alle annuleringen,SELECT * FROM systeemzorgverlener_zorginstelling WHERE verwijderd = 'ja',SELECT * FROM appointmentparticipation WHERE absent = 1
+Wordt er een sms gestuurd voorafgaand aan een opnamegesprek?,SELECT COUNT(*) FROM systeemzorgverlener_zorginstelling WHERE invoer = 'vektis' AND statusinpraktijk = 1,SELECT sms_reminder FROM appointmenttype WHERE name = 'Opnamegesprek'
+Vindt er een voorafgaande kennisgeving via sms plaats voorafgaand aan een intakegesprek?,SELECT COUNT(*) FROM systeemzorgverlener_zorginstelling WHERE invoer = 'vektis' AND statusinpraktijk = 1,SELECT sms_reminder FROM appointmenttype WHERE name = 'Opnamegesprek'
+Toon mij de afspraken waar het verwijstype 'self initiative' is,SELECT * FROM afspraken WHERE verwijstype = 'self initiative',SELECT * FROM appointment WHERE referrerfixedtype = 'self_initiative'
+Geef me alle afspraken met het verwijstype self initiative,"SELECT *
+FROM behandelingggz_systeemggzactiviteit
+WHERE verwijstype = 'self initiative'",SELECT * FROM appointment WHERE referrerfixedtype = 'self_initiative'
+Ik wil de voor- en achternamen van alle mannelijke werknemers,"SELECT voorletters, eigennaam, echtgenootnaam
+FROM systeemzorgverlener
+WHERE geslacht = 'man'","SELECT FIRSTNAME, SURNAME FROM employee WHERE GENDER = 1"
+Namen van mannelijke medewerkers.,SELECT eigennaam FROM systeemzorgverlener WHERE geslacht = 'man',"SELECT FIRSTNAME, SURNAME FROM employee WHERE GENDER = 1"
+Wat voor soort organisatie is Altrecht?,"SELECT type
+FROM systeemzorginstelling
+WHERE naam = 'Altrecht'","SELECT referrerorganization.NAME as organisatie_naam, referrerorganizationtype.NAME as organisatie_type FROM referrerorganization LEFT JOIN referrerorganizationtype on referrerorganizationtype.id = referrerorganization.referrerorganizationtype_id WHERE referrerorganization.NAME = 'Altrecht'"
+Kunt u mij verklaren welke soort organisatie Altrecht is?,"SELECT koepelorganisatie.naam
+FROM koepelorganisatie
+JOIN koepelorganisatie_maatschappij ON koepelorganisatie.id = koepelorganisatie_maatschappij.koepelorganisatie_id
+JOIN systeemzorginstelling ON koepelorganisatie_maatschappij.maatschappij_id = systeemzorginstelling.id
+WHERE systeemzorginstelling.naam = 'Altrecht';","SELECT referrerorganization.NAME as organisatie_naam, referrerorganizationtype.NAME as organisatie_type FROM referrerorganization LEFT JOIN referrerorganizationtype on referrerorganizationtype.id = referrerorganization.referrerorganizationtype_id WHERE referrerorganization.NAME = 'Altrecht'"
+Geef me een lijst met alle zorgverzekeraars en hun telefoonnummer.,"SELECT DISTINCT a.maatsschappij_id, z.telefoonnummer
+FROM assurantienl a
+JOIN systeemmaatschappijNL s ON a.maatschappij_id = s.id
+JOIN systeemzorgverlener_zorginstelling sz ON s.id = sz.systeemzorginstelling_id
+JOIN systeemzorgverlener z ON sz.systeemzorgverlener_id = z.id
+WHERE a.verzekerd = 'ja'","SELECT NAAM, TELEFOON FROM systeemmaatschappijnl"
+"Ik verzoek u om mij te voorzien van een uitputtende inventarisatie van alle zorgverzekeraars, alsmede hun corresponderende telefoonnummers.","SELECT DISTINCT a.maatsschappij_id, s.telefoonnummer
+FROM assurantienl a
+JOIN systeemmaatschappijNL s ON a.maatsschappij_id = s.id","SELECT NAAM, TELEFOON FROM systeemmaatschappijnl"
+Geef me alle ID's van patiënten die nu niet verzekerd zijn.,"SELECT id
+FROM assurantienl
+WHERE verzekerd = 'nee'","SELECT patient_id, vervaldatum, verzekerd FROM assurantienl WHERE YEAR(vervaldatum) = '9999' and verzekerd = 'nee'"
+Zou u mij alstublieft de identificatienummers willen verstrekken van degenen die momenteel niet beschikken over een geldige verzekeringspolis?,"SELECT DISTINCT sv.id
+FROM systeemzorgverlener sv
+LEFT JOIN assurantienl a ON sv.id = a.patient_id
+WHERE a.verzekerd = 'nee' OR a.verzekerd IS NULL","SELECT patient_id, vervaldatum, verzekerd FROM assurantienl WHERE YEAR(vervaldatum) = '9999' and verzekerd = 'nee'"
+Wat was de eerste afspraak?,SELECT MIN(datumtoetreding) FROM systeemzorgverlener_zorginstelling,SELECT * FROM appointment ORDER BY intervalstart LIMIT 1
+Welke afspraak was de eerste afspraak?,SELECT * FROM `systeemzorgverlener_zorginstelling` ORDER BY `datumtoetreding` ASC LIMIT 1,SELECT * FROM appointment ORDER BY intervalstart LIMIT 1
+Laat mij alle medewerkers met een Tenzinger e-mailadres zien,SELECT * FROM systeemzorgverlener WHERE email LIKE '%@tenzinger%',SELECT * FROM employee WHERE email LIKE '%tenzinger%'
+Toon mij alle personeelsleden met een e-mailadres dat aan Tenzinger is gelieerd.,SELECT * FROM systeemzorgverlener WHERE email LIKE '%@tenzinger%',SELECT * FROM employee WHERE email LIKE '%tenzinger%'
+"Toon me alle afspraken van 2023, beginnend met de meest recente.",SELECT * FROM afspraken WHERE YEAR(datum) = 2023 ORDER BY datum DESC,SELECT * FROM appointment WHERE YEAR(created) = 2023 ORDER BY created DESC
+"Geef mij alle afspraken gemaakt in 2023, met de nieuwste afspraak bovenaan",SELECT * FROM `behandelingggz_systeemggzactiviteit` WHERE YEAR(`uitvoerdatum`) = 2023 ORDER BY `uitvoerdatum` DESC,SELECT * FROM appointment WHERE YEAR(created) = 2023 ORDER BY created DESC
+"Geef mij de inschrijfdatum, voor- en achternaam, zorgtraject naam en zorgtraject startdatum van cliënten met een zorgtraject","SELECT z.startdatum AS inschrijfdatum, p.voornaam, p.achternaam, z.naam AS zorgtrajectnaam, z.startdatum AS zorgtrajectstartdatum
+FROM zorgtraject z
+JOIN patient p ON z.patient_id = p.id
+WHERE z.status = 'open'","SELECT patient.firstnames, patient.eigennaam, patient.invoerdatum, zorgtraject.naam, zorgtraject.startdatum FROM patient INNER JOIN zorgtraject on patient.id = zorgtraject.patient_id"
+"Toon mij de registratiedatum en namen van cliënten, en naam en startdatum van het zorgtraject van cliënten momenteel deelnemend aan een zorgtraject.","SELECT zorgtraject.startdatum, zorgtraject.naam, systeemzorgverlener.eigennaam, systeemzorgverlener.voorletters
+FROM zorgtraject
+JOIN systeemzorgverlener ON zorgtraject.id = systeemzorgverlener.id
+WHERE zorgtraject.status = 'open'","SELECT patient.firstnames, patient.eigennaam, patient.invoerdatum, zorgtraject.naam, zorgtraject.startdatum FROM patient INNER JOIN zorgtraject on patient.id = zorgtraject.patient_id"
+Haal alle ID's op van patienten waar 'brummel' voorkomt in de achternaam.,"SELECT id
+FROM systeemzorgverlener
+WHERE eigennaam LIKE '%brummel%' OR echtgenootnaam LIKE '%brummel%'",SELECT id FROM PATIENT WHERE lower(eigennaam) LIKE '%brummel%'
+Verkrijg de identificatienummers van patiënten waarin het woord 'brummel' deel uitmaakt van de achternaam.,"SELECT id
+FROM systeemzorgverlener
+WHERE eigennaam LIKE '%brummel%'",SELECT id FROM PATIENT WHERE lower(eigennaam) LIKE '%brummel%'
+Laat mij alle patiënten en hun privacy bezwaren zien,"SELECT p.id, p.firstnames, p.roepnaam, p.eigennaam, p.opmerking, p.opmerkingtonen
+FROM patient p","SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id"
+Toon mij een overzicht van alle patiënten inclusief hun privacybezwaren,SELECT * FROM patient,"SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id"
+Hoeveel psychiaters hebben wij in onze database?,SELECT COUNT(*) FROM systeemzorgverlener WHERE zorgverlenersoort_id = (SELECT id FROM zorgverlenersoort WHERE naam = 'psychiater'),SELECT count(function) FROM employee WHERE lower(function) like '%psychiater%'
+Hoeveel psychiaters zijn er geregistreerd in onze gegevens?,SELECT COUNT(*) FROM systeemzorgverlener WHERE zorgverlenersoort_id = (SELECT id FROM zorgverlenersoort WHERE naam = 'psychiater'),SELECT count(function) FROM employee WHERE lower(function) like '%psychiater%'
+Toon mij de lijst met patiënten zonder privacybezwaren,SELECT * FROM patient WHERE opmerkingtonen = 'nee',"SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.referrer_id = zorgtraject.patient_id WHERE zorgtraject.privacybezwaren = 'nee'"
+Geef mij alle patienten die geen privacybezwaren hebben,"SELECT *
+FROM systeemzorgverlener
+WHERE privacybezwaren = 'nee'","SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.referrer_id = zorgtraject.patient_id WHERE zorgtraject.privacybezwaren = 'nee'"
+Ik wil van alle afspraken na 2019 weten hoeveel afspraken per type er zijn geweest,"SELECT pg.type, COUNT(*) AS aantal_afspraken
+FROM patientgroup pg
+JOIN afspraak a ON a.patientgroup_id = pg.id
+WHERE a.datum > '2019-01-01'
+GROUP BY pg.type","SELECT appointmenttype.NAME, count(*) FROM appointmenttype LEFT JOIN appointment on appointment.appointmenttype_id = appointmenttype.id WHERE appointment.INTERVALSTART >= '2020-01-01' GROUP BY appointmenttype.NAME"
+"Ik verzoek om een overzicht van het aantal afspraken, gespecificeerd naar type, die hebben plaatsgevonden na het jaar 2019.","SELECT pg.type, COUNT(*) AS aantal_afspraken
+FROM patientgroup pg
+JOIN afspraken a ON pg.id = a.patientgroup_id
+WHERE YEAR(a.datum) > 2019
+GROUP BY pg.type","SELECT appointmenttype.NAME, count(*) FROM appointmenttype LEFT JOIN appointment on appointment.appointmenttype_id = appointmenttype.id WHERE appointment.INTERVALSTART >= '2020-01-01' GROUP BY appointmenttype.NAME"
+Bij welke organisatie werkt I. Hendriksen?,"SELECT koepelorganisatie.naam
+FROM koepelorganisatie
+JOIN koepelorganisatie_maatschappij ON koepelorganisatie.id = koepelorganisatie_maatschappij.koepelorganisatie_id
+JOIN maatschappij ON koepelorganisatie_maatschappij.maatschappij_id = maatschappij.id
+JOIN assurantienl ON maatschappij.id = assurantienl.maatschappij_id
+JOIN patient ON assurantienl.patient_id = patient.id
+JOIN systeemzorgverlener_zorginstelling ON patient.id = systeemzorgverlener_zorginstelling.systeemzorgverlener_id
+JOIN systeemzorginstelling ON systeemzorgverlener_zorginstelling.systeemzorginstelling_id = systeemzorginstelling.id
+WHERE systeemzorginstelling.naam = 'I. Hendriksen'","SELECT referrerindividual.INITIALS, referrerindividual.SURNAME, referrerorganization.NAME FROM referrerorganization LEFT JOIN referrerindividual on referrerindividual.referrerorganization_id = referrerorganization.id WHERE referrerindividual.INITIALS = 'I' and referrerindividual.SURNAME = 'Hendriksen'"
+Welke organisatie heeft I. Hendriksen als werknemer?,"SELECT koepelorganisatie.naam
+FROM koepelorganisatie
+JOIN koepelorganisatie_maatschappij ON koepelorganisatie.id = koepelorganisatie_maatschappij.koepelorganisatie_id
+JOIN maatschappij ON koepelorganisatie_maatschappij.maatschappij_id = maatschappij.id
+JOIN assurantienl ON maatschappij.id = assurantienl.maatschappij_id
+JOIN patient ON assurantienl.patient_id = patient.id
+JOIN systeemzorgverlener_zorginstelling ON patient.id = systeemzorgverlener_zorginstelling.systeemzorgverlener_id
+JOIN systeemzorgverlener ON systeemzorgverlener_zorginstelling.systeemzorgverlener_id = systeemzorgverlener.id
+WHERE systeemzorgverlener.naam = 'I. Hendriksen'","SELECT referrerindividual.INITIALS, referrerindividual.SURNAME, referrerorganization.NAME FROM referrerorganization LEFT JOIN referrerindividual on referrerindividual.referrerorganization_id = referrerorganization.id WHERE referrerindividual.INITIALS = 'I' and referrerindividual.SURNAME = 'Hendriksen'"
+Geef me de ID's en namen van de patiënten die het depressie traject gestart zijn na 2018.,"SELECT z.patient_id, z.naam
+FROM zorgtraject z
+WHERE z.naam = 'depressie' AND z.startdatum > '2018-01-01'","SELECT patient.id, patient.roepnaam, patient.eigennaam FROM zorgtraject LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE LOWER(zorgtraject.naam) = 'depressie' and YEAR(zorgtraject.startdatum) > 2018"
+Toon mij de identificatienummers en namen van de patiënten die na het jaar 2018 zijn begonnen met het depressietraject.,"SELECT zorgtraject.id, zorgtraject.naam
+FROM zorgtraject
+JOIN patientgroup ON zorgtraject.id = patientgroup.id
+WHERE zorgtraject.startdatum > '2018-01-01'
+AND zorgtraject.naam = 'depressietraject'","SELECT patient.id, patient.roepnaam, patient.eigennaam FROM zorgtraject LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE LOWER(zorgtraject.naam) = 'depressie' and YEAR(zorgtraject.startdatum) > 2018"
+"Geef me van alle patiënten hun IDs, namen en in welke gemeente ze wonen","SELECT p.id, p.eigennaam, i.plaats
+FROM systeemzorgverlener p
+JOIN systeemzorginstelling i ON p.plaats = i.id","SELECT patient.id, patient.roepnaam, patient.eigennaam, systemmunicipality.name FROM patient LEFT JOIN systempostalcode on systempostalcode.postalcode = IFF(patient.verwijderd='ja', '0000', LEFT(patient.postcode,4)) LEFT JOIN systempostalcode_systemmunicipality on systempostalcode_systemmunicipality.systempostalcode_id = systempostalcode.id LEFT JOIN systemmunicipality on systemmunicipality.id = systempostalcode_systemmunicipality.systemmunicipality_id"
+"Verstrek mij de identificatienummers, volledige namen en gemeentes van alle patiënten","SELECT id, CONCAT(eigennaam, ' ', tussenvoegseleigennaam, ' ', echtgenootnaam) AS volledige_naam, plaats
+FROM systeemzorgverlener","SELECT patient.id, patient.roepnaam, patient.eigennaam, systemmunicipality.name FROM patient LEFT JOIN systempostalcode on systempostalcode.postalcode = IFF(patient.verwijderd='ja', '0000', LEFT(patient.postcode,4)) LEFT JOIN systempostalcode_systemmunicipality on systempostalcode_systemmunicipality.systempostalcode_id = systempostalcode.id LEFT JOIN systemmunicipality on systemmunicipality.id = systempostalcode_systemmunicipality.systemmunicipality_id"
+Geef me de verzekeringsmaatschappij van patient 53,SELECT maatschappij_id FROM assurantienl WHERE patient_id = 53,SELECT systeemmaatschappijnl.* FROM patient LEFT JOIN assurantienl on assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' LEFT JOIN systeemmaatschappijnl on systeemmaatschappijnl.id = assurantienl.maatschappij_id WHERE patient.id = 53
+Verleen mij inzage in de verzekeringsmaatschappij van cliënt 53.,SELECT maatschappij_id FROM assurantienl WHERE patient_id = 53,SELECT systeemmaatschappijnl.* FROM patient LEFT JOIN assurantienl on assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' LEFT JOIN systeemmaatschappijnl on systeemmaatschappijnl.id = assurantienl.maatschappij_id WHERE patient.id = 53
+Bij welke afspraken zijn cliënten nog niet aangemeld?,"SELECT *
+FROM afspraken
+WHERE aanmelding = 'nee'",SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%niet aangemeld%'
+Welke afspraken betreffen cliënten die nog niet zijn aangemeld?,SELECT * FROM patientgroup WHERE type = 'open',SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%niet aangemeld%'
+Laat me alle tandartsverzekeringen zien die extra dekking bieden,SELECT * FROM assurantienl WHERE verzekeringsvorm = 'tandarts' AND dekkingstype = 'aanvullend',SELECT * FROM maatschappijpakket WHERE dekkingstype = 'aanvullend' and lower(pakketnaam) LIKE '%tand%' and lower(pakketnaam) NOT LIKE '%standaard%'
+Geef mij alle aanvullende tandartsverzekeringen,SELECT * FROM assurantienl WHERE dekkingstype = 'aanvullend' AND verzekeringsvorm = 'particulier',SELECT * FROM maatschappijpakket WHERE dekkingstype = 'aanvullend' and lower(pakketnaam) LIKE '%tand%' and lower(pakketnaam) NOT LIKE '%standaard%'
+Laat mij alle medewerkers met een Medicore e-mailadres zien die een vast telefoonnummer hebben die start met 030,"SELECT *
+FROM systeemzorgverlener
+WHERE email LIKE '%@medicore.nl' AND telefoonnummer LIKE '030%'",SELECT * FROM employee WHERE email LIKE '%medicore%' and phonehome LIKE '030%'
+"Toon mij de lijst van werknemers met een Medicore e-mailadres, waarvan het vaste telefoonnummer begint met de cijferreeks 030.","SELECT eigennaam, email, telefoonnummer
+FROM systeemzorgverlener
+WHERE email LIKE '%@medicore.com' AND telefoonnummer LIKE '030%'",SELECT * FROM employee WHERE email LIKE '%medicore%' and phonehome LIKE '030%'
+"Geef mij alle afspraken gemaakt in 2023 binnen de kliniek, met de oudste aangemaakte afspraak bovenaan","SELECT * FROM afspraak
+WHERE YEAR(aangemaakt) = 2023
+ORDER BY aangemaakt ASC",SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'clinic' ORDER BY created
+"Geef mij een geordende weergave van de afspraken binnen de kliniek die gecreëerd zijn in het jaar 2023, gerangschikt op basis van de initiële aanmaakdatum, waarbij de vroegst gemaakte afspraak als eerste wordt getoond.",SELECT * FROM patientgroup WHERE YEAR(datestart) = 2023 ORDER BY datelastretrieved ASC,SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'clinic' ORDER BY created
+"Laat de ID's zien van de eerste 250 zorgverleners die zijn geïmporteerd, gesorteerd op achternaam.","SELECT id
+FROM systeemzorgverlener
+WHERE geimporteerd = 1
+ORDER BY eigennaam
+LIMIT 250",SELECT id FROM SYSTEEMZORGVERLENER WHERE geimporteerd = 1 ORDER BY eigennaam LIMIT 250
+"Haal de ID's op van de eerste 250 geïmporteerde zorgverleners, gesorteerd op de eigennaam.","SELECT id
+FROM systeemzorgverlener
+WHERE geimporteerd = 1
+ORDER BY eigennaam
+LIMIT 250",SELECT id FROM SYSTEEMZORGVERLENER WHERE geimporteerd = 1 ORDER BY eigennaam LIMIT 250
+Geef mij het aantal unieke cliënten en verzekeringen met dekkingstype basis die op dit moment geldig zijn,"SELECT COUNT(DISTINCT assurantienl.patient_id) AS aantal_clienten, COUNT(DISTINCT assurantienl.id) AS aantal_verzekeringen
+FROM assurantienl
+WHERE assurantienl.dekkingstype = 'basis'
+AND CURDATE() BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum","SELECT count(DISTINCT patient.id), count(DISTINCT assurantienl.id) FROM patient INNER JOIN assurantienl on patient.id = assurantienl.patient_id WHERE assurantienl.dekkingstype = 'basis' and current_date between assurantienl.ingangsdatum and assurantienl.vervaldatum"
+"Hoeveel unieke clienten en unieke verzekeringen zijn er, die momenteel in het bezit zijn van een geldige basisverzekering","SELECT COUNT(DISTINCT patient_id) AS aantal_clienten, COUNT(DISTINCT id) AS aantal_verzekeringen
+FROM assurantienl
+WHERE verzekeringsvorm = 'basis' AND ingangsdatum <= CURDATE() AND vervaldatum >= CURDATE()","SELECT count(DISTINCT patient.id), count(DISTINCT assurantienl.id) FROM patient INNER JOIN assurantienl on patient.id = assurantienl.patient_id WHERE assurantienl.dekkingstype = 'basis' and current_date between assurantienl.ingangsdatum and assurantienl.vervaldatum"
+Geef me alle afspraken die geannuleerd zijn.,SELECT * FROM `behandelingggz_systeemggzactiviteit` WHERE `uitgevoerd` = 'nee',SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%geannuleerd%'
+Laat mij een overzicht zien van de geannuleerde afspraken.,"SELECT *
+FROM behandelingggz_systeemggzactiviteit
+WHERE uitgevoerd = 'nee'",SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%geannuleerd%'

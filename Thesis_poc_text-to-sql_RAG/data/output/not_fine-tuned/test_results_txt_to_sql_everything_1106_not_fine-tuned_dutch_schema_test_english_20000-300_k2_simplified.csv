@@ -1,0 +1,211 @@
+questions,answers_GPT3_5,answers_golden_standard
+Please provide me with the first names of all employees.,"SELECT voornaam
+FROM employee",SELECT firstname FROM employee
+May I ask you to provide me with the first names of all employees?,"SELECT voornaam
+FROM employee",SELECT firstname FROM employee
+Could you inform me about the different types of treatment available?,"SELECT DISTINCT treatment_id
+FROM patientproduct_treatment",SELECT treatment_type FROM treatment GROUP BY treatment_type
+What types of treatment are there?,"SELECT DISTINCT name
+FROM systemcarefacility",SELECT treatment_type FROM treatment GROUP BY treatment_type
+"What appointments were there on May 7, 2020?","SELECT * 
+FROM appointment 
+WHERE DATE(intervalstart) = '2020-05-07'",SELECT * FROM appointment WHERE CAST(INTERVALSTART AS date) = '2020-05-07'
+"Could you please inform me regarding the scheduled appointments that were scheduled on May seven, 2020?","SELECT *
+FROM patientproductinstance
+WHERE startdate = '2020-05-07'",SELECT * FROM appointment WHERE CAST(INTERVALSTART AS date) = '2020-05-07'
+How many employees do I have in my facility?,"SELECT COUNT(id) AS total_employees
+FROM resource",SELECT count(*) FROM employee
+Could you inform me regarding the exact number of staff currently employed within my institutional setting?,"SELECT COUNT(*) AS staff_count
+FROM employee
+WHERE system_care_institution_id = [id of your institutional setting]",SELECT count(*) FROM employee
+Please provide me with all clients living in single-family homes.,"SELECT * 
+FROM patient 
+WHERE housetype = 'WOONW'",SELECT * FROM patient WHERE housetype = 'EENGEZW'
+Could you provide me with a list of all individuals who currently have their residence in a single-family residence?,"SELECT * 
+FROM patient 
+WHERE housetype = 'WOONW'",SELECT * FROM patient WHERE housetype = 'EENGEZW'
+Which patients have the patient portal activated?,SELECT * FROM patient WHERE ispatientportalactivated = 1,SELECT * FROM patient WHERE ispatientportalactivated = 1
+Can you tell me which patients currently have their patient portal activated?,"SELECT id, search_name, ispatientportalactivated
+FROM patient
+WHERE ispatientportalactivated = 1",SELECT * FROM patient WHERE ispatientportalactivated = 1
+What is the function of user Bosman?,"SELECT functie
+FROM employee
+WHERE achternaam = 'Bosman'",SELECT function FROM employee WHERE abbreviation = 'Bosman'
+What function does user Bosman have within the organization?,"SELECT functie
+FROM employee
+WHERE achternaam = 'Bosman'",SELECT function FROM employee WHERE abbreviation = 'Bosman'
+Show me five appointments,SELECT * FROM appointment LIMIT 5,SELECT top 5 * FROM appointment
+May I kindly ask you to show me five scheduled appointments?,SELECT * FROM appointment LIMIT 5,SELECT top 5 * FROM appointment
+Show me all appointments from 2023,"SELECT * 
+FROM appointment 
+WHERE YEAR(intervalstart) = 2023",SELECT * FROM appointment WHERE YEAR(created) = 2023
+Show me all appointments made from 2023,"SELECT * 
+FROM appointment
+WHERE YEAR(intervalstart) = 2023",SELECT * FROM appointment WHERE YEAR(created) = 2023
+Please show me all cancellations.,"SELECT *
+FROM patientproductexemplaar
+WHERE geanuleerdop IS NOT NULL",SELECT * FROM appointmentparticipation WHERE absent = 1
+Please provide me with all cancellations,"SELECT *
+FROM patientproductexemplaar
+WHERE geanuleerdop IS NOT NULL",SELECT * FROM appointmentparticipation WHERE absent = 1
+Is a text message sent prior to a recording call?,"SELECT * 
+FROM textmessage 
+WHERE type = 'normal' 
+AND senddate < (SELECT MIN(senddate) FROM textmessage WHERE type = 'wappush')",SELECT sms_reminder FROM appointmenttype WHERE name = 'Opnamegesprek'
+Is there advance notification via text message prior to an intake interview?,"SELECT `naam` 
+FROM `contactmanier` 
+WHERE `beschrijving` = 'text message'",SELECT sms_reminder FROM appointmenttype WHERE name = 'Opnamegesprek'
+Show me the appointments where the reference type is 'self initiative',"SELECT * 
+FROM zorgtraject 
+WHERE referrertype_id = (SELECT id FROM referrerorganizationtype WHERE name = 'self initiative')",SELECT * FROM appointment WHERE referrerfixedtype = 'self_initiative'
+Show me all appointments with the reference type self initiative,SELECT * FROM zorgtraject WHERE referrerowninitiative_id = 1,SELECT * FROM appointment WHERE referrerfixedtype = 'self_initiative'
+I want the first and last names of all male employees.,"SELECT voornaam, achternaam
+FROM employee
+WHERE geslacht = 0","SELECT FIRSTNAME, surname FROM employee WHERE gender = 1"
+Names of male employees.,"SELECT voornaam, achternaam
+FROM employee
+WHERE geslacht = 'man'","SELECT FIRSTNAME, surname FROM employee WHERE gender = 1"
+What kind of organization is Altrecht?,"SELECT naam, organisatievorm
+FROM systeemmaatschappijnl
+WHERE naam = 'Altrecht'","SELECT referrerorganization.NAME as organization_name, referrerorganizationtype.NAME as organization_type FROM referrerorganization LEFT JOIN referrerorganizationtype on referrerorganizationtype.id = referrerorganization.referrerorganizationtype_id WHERE referrerorganization.NAME = 'Altrecht'"
+Can you explain to me what kind of organization Altrecht is?,"SELECT naam, organisatievorm
+FROM systeemmaatschappijnl
+WHERE naam = 'Altrecht'","SELECT referrerorganization.NAME as organization_name, referrerorganizationtype.NAME as organization_type FROM referrerorganization LEFT JOIN referrerorganizationtype on referrerorganizationtype.id = referrerorganization.referrerorganizationtype_id WHERE referrerorganization.NAME = 'Altrecht'"
+Please provide me with a list of all health insurance companies and their phone numbers.,"SELECT clinic.name, clinic.telephone
+FROM clinic","SELECT name, telephone FROM systemsocietynl"
+"I request that you provide me with an exhaustive inventory of all health insurance companies, as well as their corresponding phone numbers.","SELECT form_of_insurance, phonework
+FROM assurantienl
+INNER JOIN clinic ON assurantienl.society_id = clinic.society_id","SELECT name, telephone FROM systemsocietynl"
+Please provide me with all IDs of patients who are not currently insured.,"SELECT id
+FROM patient
+WHERE id NOT IN (SELECT patient_id FROM assurantienl WHERE insured = 'ja')","SELECT patient_id, expiration_date, insured FROM insurancenl WHERE YEAR(expiration_date) = '9999' and insured = 'nee'"
+Would you please provide me with the identification numbers of those who do not currently have a valid insurance policy?,"SELECT id
+FROM patient
+WHERE id NOT IN (SELECT patient_id FROM assurantienl WHERE expiration_date >= CURDATE())","SELECT patient_id, expiration_date, insured FROM insurancenl WHERE YEAR(expiration_date) = '9999' and insured = 'nee'"
+What was the first appointment?,SELECT * FROM appointment ORDER BY intervalstart LIMIT 1,SELECT * FROM appointment ORDER BY intervalstart LIMIT 1
+Which appointment was the first appointment?,SELECT * FROM appointment ORDER BY intervalstart ASC LIMIT 1,SELECT * FROM appointment ORDER BY intervalstart LIMIT 1
+Please show me all staff with a Tenzinger email address,"SELECT * 
+FROM systeemzorgverlener 
+WHERE email LIKE '%@tenzinger.com'",SELECT * FROM employee WHERE email LIKE '%tenzinger%'
+Show me all staff members with a Tenzinger-affiliated email address.,"SELECT * 
+FROM systeemzorgverlener 
+WHERE email LIKE '%@tenzinger.com'",SELECT * FROM employee WHERE email LIKE '%tenzinger%'
+"Show me all appointments from 2023, starting with the most recent.","SELECT * 
+FROM appointment 
+WHERE YEAR(intervalstart) = 2023 
+ORDER BY intervalstart DESC",SELECT * FROM appointment WHERE YEAR(created) = 2023 ORDER BY created DESC
+"Show me all appointments made in 2023, with the newest appointment at the top.","SELECT * 
+FROM appointment 
+WHERE YEAR(intervalstart) = 2023 
+ORDER BY intervalstart DESC",SELECT * FROM appointment WHERE YEAR(created) = 2023 ORDER BY created DESC
+"Show me the registration date, first and last name, care plan name and care plan start date of clients with care plans.","SELECT patient.entry_date, patient.firstnames, patient.surname, patientproduct_treatment.external_id, patientproductinstance.startdate
+FROM patient
+JOIN patientproductinstance ON patient.id = patientproductinstance.patient_id
+JOIN patientproduct_treatment ON patientproductinstance.treatment_id = patientproduct_treatment.id","SELECT patient.firstnames, patient.given_name, patient.entry_date, carepathway.name, carepathway.startdate FROM patient INNER JOIN carepathway on patient.id = carepathway.patient_id"
+"Show me the enrollment date and names of clients, and name and care pathway start date of clients currently participating in a care pathway.","SELECT p.entry_date AS enrollment_date, p.search_name AS client_name, cp.name AS care_pathway_name, cp.start_date AS care_pathway_start_date
+FROM patient p
+JOIN patientproductinstance pp ON p.id = pp.patient_id
+JOIN patientproductinstanceallocated ppa ON pp.id = ppa.patientproductinstance_id
+JOIN patientgroup pg ON ppa.id = pg.id
+JOIN patientproduct_treatment ppt ON pp.id = ppt.patientproduct_id
+JOIN treatment t ON ppt.treatment_id = t.id
+JOIN contactmanner cp ON t.contactmanner_id = cp.id","SELECT patient.firstnames, patient.given_name, patient.entry_date, carepathway.name, carepathway.startdate FROM patient INNER JOIN carepathway on patient.id = carepathway.patient_id"
+Retrieve all IDs of patients where 'brummel' appears in the last name.,"SELECT id
+FROM patient
+WHERE surname LIKE '%brummel%'",SELECT id FROM PATIENT WHERE lower(surname) LIKE '%brummel%'
+Obtain the identification numbers of patients in which the word 'brummel' is part of the last name.,"SELECT id
+FROM patient
+WHERE surname LIKE '%brummel%'",SELECT id FROM PATIENT WHERE lower(surname) LIKE '%brummel%'
+Show me all patients and their privacy objections,"SELECT id, search_name, show_remark
+FROM patient","SELECT DISTINCT patient.given_name, patient.surname, carepathway.privacy_objections FROM patient LEFT JOIN carepathway on patient.id = carepathway.patient_id"
+Show me a list of all patients including their privacy concerns,"SELECT p.id, p.search_name, p.firstnames, p.given_name, p.surname, p.marriedname, p.prefixmarriedname, p.initials, p.prefixsurname, p.title, p.sex, p.administrativegender, p.nameusage, p.date_of_birth, p.date_of_birthSBVz, p.postal_code, p.location, p.phonehome, p.phonework, p.phonemobile, p.email, p.remark, p.show_remark, p.entry_date, p.dead, p.datetimedeath, p.exact_debtor, p.deleted, p.care_provider_number, p.practice_number, p.systemcareprovider_healthcareinstitution_id, p.address_street_name, p.address_house_number, p.address_house_number_addition, p.final_policy_check, p.hospital_number, p.vektispracticehospital_id, p.marital_status, p.region_id, p.country_id, p.countryorigin_id, p.countryoriginfather_id, p.countryoriginsmother_id, p.post_street_name, p.post_house_number, p.post_house_number_addition, p.postal_zip_code, p.post_place, p.postcountry_id, p.postregion_id, p.postsubregion_id, p.spokenlanguage_id, p.zisnumber, p.residentialtype_id, p.new_input, p.post_address, p.specialist_id, p.subregion_id, p.provisional_registration, p.lastastraiaupdate, p.latestadamupdate, p.referrertype_id, p.referrerfixedtype, p.referrerorganization_id, p.referrerperson_id, p.referrerowninitiative_id, p.national_insurance, p.discouple_number, p.registrar_id, p.external_id, p.bsnvalue, p.bsnverified, p.lastbsncheck, p.widtype, p.widnumber, p.widverified, p.widverificationdate, p.widcheck, p.lastwidcheck, p.identificationvalue, p.systemidentification_id, p.first_appointment_date, p.latestirisupdate, p.sms_reminder, p.bsnsource, p.system_eductation_level_id, p.parent_system_eductation_level_id, p.work_situation, p.patientstatus_id, p.romapproval, p.nationality, p.system_living_situation_code, p.system_care_domain_code, p.covcheckcode, p.covcheckdate, p.covcheckdisabled, p.referrer_id, p.lastmodifiedforemrconversion, p.externalregistrationstatus, p.ispatientportalactivated, p.patientportalactivationdate, p.patientportaldatatransferthresholddate, p.deregistrationdate, p.medicalstatus, p.medicalstatuslastmodified, p.medicalstatuslastmodifiedby, p.incare, p.maritalstatus, p.multiplebirth, p.housetype, p.clarificationlivingsituation, p.livingsituationstartdate, p.additionalinformationhomeaddress, p.homeaddressnumberindication, p.familyclarification, p.familycareresponsibility, p.systemfamilycomposition_id, p.uuid, p.iskoppeltaalactive, pe.email, pe.order_number, pe.type
+FROM patient p
+LEFT JOIN patient_email pe ON p.id = pe.patient_id","SELECT DISTINCT patient.given_name, patient.surname, carepathway.privacy_objections FROM patient LEFT JOIN carepathway on patient.id = carepathway.patient_id"
+How many psychiatrists do we have in our database?,"SELECT COUNT(*) 
+FROM employee 
+WHERE functie = 'psychiatrist'",SELECT count(function) FROM employee WHERE lower(function) like '%psychiater%'
+How many psychiatrists are registered in our data?,"SELECT COUNT(*) 
+FROM employee 
+WHERE function = 'psychiatrist'",SELECT count(function) FROM employee WHERE lower(function) like '%psychiater%'
+Show me the list of patients without privacy concerns,SELECT * FROM patient WHERE show_remark = 'nee',"SELECT DISTINCT patient.given_name, patient.surname, carepathway.privacy_objections FROM patient LEFT JOIN carepathway on patient.referrer_id = carepathway.patient_id WHERE carepathway.privacy_objections = 'nee'"
+Give me all the patients who have no privacy concerns,SELECT * FROM patient WHERE id NOT IN (SELECT patient_id FROM contactmanner WHERE name = 'privacy concerns'),"SELECT DISTINCT patient.given_name, patient.surname, carepathway.privacy_objections FROM patient LEFT JOIN carepathway on patient.referrer_id = carepathway.patient_id WHERE carepathway.privacy_objections = 'nee'"
+I want to know from all appointments after 2019 how many appointments per type there have been,"SELECT appointmenttype_id, COUNT(*) AS number_of_appointments
+FROM appointment
+WHERE intervalstart > '2019-01-01'
+GROUP BY appointmenttype_id","SELECT appointmenttype.NAME, count(*) FROM appointmenttype LEFT JOIN appointment on appointment.appointmenttype_id = appointmenttype.id WHERE appointment.INTERVALSTART >= '2020-01-01' GROUP BY appointmenttype.NAME"
+"I request a list of the number of appointments, broken down by type, that took place after the year 2019.","SELECT appointmenttype_id, COUNT(id) AS number_of_appointments
+FROM appointment
+WHERE YEAR(intervalstart) > 2019
+GROUP BY appointmenttype_id","SELECT appointmenttype.NAME, count(*) FROM appointmenttype LEFT JOIN appointment on appointment.appointmenttype_id = appointmenttype.id WHERE appointment.INTERVALSTART >= '2020-01-01' GROUP BY appointmenttype.NAME"
+Which organization does I. Hendriksen work for?,"SELECT * 
+FROM systeemzorgverlener 
+WHERE eigennaam = 'I. Hendriksen'","SELECT referrerindividual.INITIALS, referrerindividual.SURNAME, referrerorganization.NAME FROM referrerorganization LEFT JOIN referrerindividual on referrerindividual.referrerorganization_id = referrerorganization.id WHERE referrerindividual.INITIALS = 'I' and referrerindividual.SURNAME = 'Hendriksen'"
+Which organization does I. Hendriksen work for?,"SELECT * 
+FROM systeemzorgverlener 
+WHERE eigennaam = 'I. Hendriksen'","SELECT referrerindividual.INITIALS, referrerindividual.SURNAME, referrerorganization.NAME FROM referrerorganization LEFT JOIN referrerindividual on referrerindividual.referrerorganization_id = referrerorganization.id WHERE referrerindividual.INITIALS = 'I' and referrerindividual.SURNAME = 'Hendriksen'"
+Please give me the IDs and names of the patients who started the depression pathway after 2018.,"SELECT id, search_name
+FROM patient
+WHERE id IN (
+    SELECT patient_id
+    FROM patientproductinstance
+    WHERE startdate > '2018-01-01'
+)","SELECT patient.id, patient.given_name, patient.surname FROM carepathway LEFT JOIN patient on patient.id = carepathway.patient_id WHERE LOWER(carepathway.name) = 'depressie' and YEAR(carepathway.startdate) > 2018"
+Show me the IDs and names of the patients who started the depression pathway after the year 2018.,"SELECT id, search_name
+FROM patient
+WHERE id IN (
+    SELECT patient_id
+    FROM patientproductinstance
+    WHERE startdate > '2018-01-01'
+)","SELECT patient.id, patient.given_name, patient.surname FROM carepathway LEFT JOIN patient on patient.id = carepathway.patient_id WHERE LOWER(carepathway.name) = 'depressie' and YEAR(carepathway.startdate) > 2018"
+"Please provide me of all patients their IDs, names and in which municipality they live","SELECT id, search_name, location
+FROM patient","SELECT patient.id, patient.given_name, patient.surname, systemmunicipality.name FROM patient LEFT JOIN systempostalcode on systempostalcode.postalcode = IFF(patient.deleted='ja', '0000', LEFT(patient.postal_code,4)) LEFT JOIN systempostalcode_systemmunicipality on systempostalcode_systemmunicipality.systempostalcode_id = systempostalcode.id LEFT JOIN systemmunicipality on systemmunicipality.id = systempostalcode_systemmunicipality.systemmunicipality_id"
+"Please provide me with the identification numbers, full names and municipalities of all patients","SELECT id, CONCAT(given_name, ' ', surname) AS full_name, location
+FROM patient","SELECT patient.id, patient.given_name, patient.surname, systemmunicipality.name FROM patient LEFT JOIN systempostalcode on systempostalcode.postalcode = IFF(patient.deleted='ja', '0000', LEFT(patient.postal_code,4)) LEFT JOIN systempostalcode_systemmunicipality on systempostalcode_systemmunicipality.systempostalcode_id = systempostalcode.id LEFT JOIN systemmunicipality on systemmunicipality.id = systempostalcode_systemmunicipality.systemmunicipality_id"
+Provide me with the insurance company of patient 53,"SELECT form_of_insurance
+FROM assurantienl
+WHERE patient_id = 53",SELECT systemsocietynl.* FROM patient LEFT JOIN insurancenl on insurancenl.patient_id = patient.id AND current_timestamp BETWEEN insurancenl.starting_date AND insurancenl.expiration_date AND insurancenl.coverage_type='basis' LEFT JOIN systemsocietynl on systemsocietynl.id = insurancenl.society_id WHERE patient.id = 53
+Please grant me access to client 53's insurance company.,SELECT * FROM assurantienl WHERE society_id = 53,SELECT systemsocietynl.* FROM patient LEFT JOIN insurancenl on insurancenl.patient_id = patient.id AND current_timestamp BETWEEN insurancenl.starting_date AND insurancenl.expiration_date AND insurancenl.coverage_type='basis' LEFT JOIN systemsocietynl on systemsocietynl.id = insurancenl.society_id WHERE patient.id = 53
+Which appointments involve clients who have not yet been notified?,"SELECT * 
+FROM appointment 
+WHERE seen = 0",SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%niet aangemeld%'
+Which appointments involve clients who are not yet enrolled?,"SELECT * 
+FROM appointment 
+WHERE patientgroup_id IS NULL",SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%niet aangemeld%'
+Please show me all dental insurance policies that provide additional coverage,SELECT * FROM assurantienl WHERE coverage_type = 'aanvullend' AND form_of_insurance = 'zorgverzekeraar',SELECT * FROM societypackage WHERE coverage_type = 'aanvullend' and lower(package_name) LIKE '%tand%' and lower(package_name) NOT LIKE '%standaard%'
+Show me all supplemental dental insurance policies,SELECT * FROM assurantienl WHERE coverage_type = 'aanvullend' AND form_of_insurance = 'particulier',SELECT * FROM societypackage WHERE coverage_type = 'aanvullend' and lower(package_name) LIKE '%tand%' and lower(package_name) NOT LIKE '%standaard%'
+Show me all employees with a Medicore email address that have a landline phone number starting with 030,"SELECT *
+FROM employee
+WHERE email LIKE '%@medicore.com' AND telefoonthuis LIKE '030%'",SELECT * FROM employee WHERE email LIKE '%medicore%' and phonehome LIKE '030%'
+Show me the list of employees with a Medicore email address whose landline phone number starts with the digit sequence 030.,"SELECT *
+FROM employee
+WHERE email LIKE '%@medicore.com' AND telefoonthuis LIKE '030%'",SELECT * FROM employee WHERE email LIKE '%medicore%' and phonehome LIKE '030%'
+"Provide me with all appointments created in 2023 within the clinic, with the oldest appointment created at the top","SELECT * 
+FROM appointment 
+WHERE YEAR(created) = 2023 
+AND clinic_id IS NOT NULL 
+ORDER BY created ASC",SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'clinic' ORDER BY created
+"Show me an ordered view of appointments within the clinic created in the year 2023, ordered by initial creation date, with the earliest created appointment shown first.","SELECT * 
+FROM appointment 
+WHERE clinic_id = (SELECT id FROM clinic WHERE name = 'clinic_name') 
+AND YEAR(created) = 2023 
+ORDER BY created ASC",SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'clinic' ORDER BY created
+"Display the IDs of the first 250 healthcare providers imported, sorted by last name.","SELECT id
+FROM employee
+ORDER BY surname
+LIMIT 250",SELECT id FROM systemcaregiver WHERE imported = 1 ORDER BY surname LIMIT 250
+"Retrieve the IDs of the first 250 caregivers imported, sorted by last name.","SELECT id
+FROM employee
+ORDER BY surname
+LIMIT 250",SELECT id FROM systemcaregiver WHERE imported = 1 ORDER BY surname LIMIT 250
+Give me the number of unique clients and insurance policies with coverage type basic that are currently valid.,"SELECT COUNT(DISTINCT patient_id) AS unique_clients, COUNT(*) AS insurance_policies
+FROM assurantienl
+WHERE coverage_type = 'basis'
+AND starting_date <= CURDATE()
+AND expiration_date >= CURDATE()","SELECT count(DISTINCT patient.id), count(DISTINCT insurancenl.id) FROM patient INNER JOIN insurancenl on patient.id = insurancenl.patient_id WHERE insurancenl.coverage_type = 'basis' and current_date between insurancenl.starting_date and insurancenl.expiration_date"
+How many unique clients and unique insureds are currently in possession of a valid basic insurance policy?,"SELECT COUNT(DISTINCT patient_id) AS unique_clients, COUNT(DISTINCT insured) AS unique_insureds
+FROM assurantienl
+WHERE coverage_type = 'basis' AND starting_date <= CURDATE() AND expiration_date >= CURDATE()","SELECT count(DISTINCT patient.id), count(DISTINCT insurancenl.id) FROM patient INNER JOIN insurancenl on patient.id = insurancenl.patient_id WHERE insurancenl.coverage_type = 'basis' and current_date between insurancenl.starting_date and insurancenl.expiration_date"
+Please show me all appointments that have been cancelled.,SELECT * FROM appointment WHERE iscancelled = 1,SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%geannuleerd%'
+Please show me a summary of cancelled appointments.,"SELECT * 
+FROM appointment 
+WHERE systemappointmentstatus_id = 3",SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%geannuleerd%'

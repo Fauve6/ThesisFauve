@@ -6,7 +6,6 @@ from pathlib import Path
 from snowflake_connection import setup_connection
 from snowflake.snowpark.types import StringType
 from snowflake.snowpark.exceptions import SnowparkSQLException
-from snowflake.snowpark.exceptions import SnowparkFetchDataException
 from collections import Counter
 
 
@@ -98,16 +97,10 @@ def compare_tables(answers_gpt, answers_golden, queries_gold):
                 answer_gpt.columns = answer_gpt.columns.str.lower()
                 answer_gold.columns = answer_gold.columns.str.lower()
                 if "ORDER BY" not in queries_gold[index] and "order by" not in queries_gold[index]:
-                    if answer_gold.iloc[0, 0] != 0 and answer_gold.iloc[0,0] != 'None' and answer_gold.iloc[0,0] is not None:
-                        colname = answer_gold.columns[0]
-                        answer_gpt_sorted = answer_gpt.sort_values(by=colname).reset_index(drop=True)
-                        answer_gold_sorted = answer_gold.sort_values(by=colname).reset_index(drop=True)
-                        equality = answer_gpt_sorted.equals(answer_gold_sorted)
-                    else:
-                        colname = answer_gold.columns[2]
-                        answer_gpt_sorted = answer_gpt.sort_values(by=colname).reset_index(drop=True)
-                        answer_gold_sorted = answer_gold.sort_values(by=colname).reset_index(drop=True)
-                        equality = answer_gpt_sorted.equals(answer_gold_sorted)
+                    colname = answer_gold.columns[0]
+                    answer_gpt_sorted = answer_gpt.sort_values(by=colname).reset_index(drop=True)
+                    answer_gold_sorted = answer_gold.sort_values(by=colname).reset_index(drop=True)
+                    equality = answer_gpt_sorted.equals(answer_gold_sorted)
                 else:
                     equality = answer_gpt.equals(answer_gold)
             else:
@@ -225,23 +218,16 @@ if __name__ == "__main__":
     # load the .env variables, required since poetry doesn't load them by default (outside a notebook)
     load_dotenv()
 
-    df_data = pd.read_csv(
-        'data/output/fine-tuned/test_results_txt_to_sql_everything_1106_fine-tuned_english_schema_test_multi_20000-300_k2_simplified.csv')
+    df_data = pd.read_csv('data/output/1106/test_results_txt_to_sql_train_english_1106_test_dutch.csv')
 
-    # connection_parameters_target = {
-    #     "database": "DEV_DB_FAUVEWEVERS",  # add via .env variable
-    #     "schema": "POC_TXT_TO_SQL",
-    # }
     connection_parameters_target = {}
     session = setup_connection(**connection_parameters_target)
 
     gpt_answers, runnable_queries = get_GPT_answers(df_data)
     golden_answers = get_golden_answers(df_data)
     valid_sql_score = calculate_valid_sql(runnable_queries)
-    golden_queries = df_data['answers_golden_standard'].tolist()
     execution_accuracy_score_validSQL, execution_accuracy_score_total = calculate_execution_accuracy(gpt_answers,
-                                                                                                     golden_answers,
-                                                                                                     df_data)
+                                                                                                     golden_answers, df_data)
     exact_match_score = calculate_exact_match(df_data)
     print(f"ValidSQL: {valid_sql_score}")
     print(f"EX_validSQL: {execution_accuracy_score_validSQL}")

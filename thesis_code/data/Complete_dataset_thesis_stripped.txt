@@ -1,0 +1,480 @@
+\item Geef me de voornamen van alle werknemers. \hfil\\
+SELECT FIRSTNAME FROM employee \hfil\\
+\item Mag ik u verzoeken mij de voornamen van alle werknemers te verstrekken? \hfil\\
+SELECT FIRSTNAME FROM employee \hfil\\
+\item Hoeveel patiënten wonen in Amsterdam? \hfil\\
+SELECT COUNT(*) FROM patient WHERE PLAATS = 'Amsterdam' \hfil\\
+\item Kunt u mij uiteenzetten hoeveel individuen met een medische aandoening er momenteel geregistreerd staan in Amsterdam? \hfil\\
+SELECT COUNT(*) FROM patient WHERE PLAATS = 'Amsterdam' \hfil\\
+\item Kunt u mij vertellen hoeveel patiënten er in totaal dood zijn? \hfil\\
+SELECT COUNT(*) FROM patient WHERE OVERLEDEN = 'ja' \hfil\\
+\item Hoeveel patiënten zijn overleden? \hfil\\
+SELECT COUNT(*) FROM patient WHERE OVERLEDEN = 'ja' \hfil\\
+\item Zou u mij kunnen informeren over de verschillende soorten behandelingen die beschikbaar zijn? \hfil\\
+SELECT behandelingtype FROM behandeling GROUP BY behandelingtype \hfil\\
+\item Welke behandelingstypes zijn er? \hfil\\
+SELECT behandelingtype FROM behandeling GROUP BY behandelingtype \hfil\\
+\item Geef me een overzicht van alle koepelorganisaties die er zijn. \hfil\\
+SELECT NAAM FROM koepelorganisatie GROUP BY NAAM \hfil\\
+\item Kunt u mij alstublieft een overzicht geven van alle bestaande koepelorganisaties? \hfil\\
+SELECT NAAM FROM koepelorganisatie GROUP BY NAAM \hfil\\
+\item Ik wil graag weten hoeveel onvoltooide behandelingen er momenteel nog in behandeling zijn? \hfil\\
+SELECT Count(*) FROM behandeling WHERE STATUS = 'open' \hfil\\
+\item Hoeveel behandelingen staan nog open? \hfil\\
+SELECT Count(*) FROM behandeling WHERE STATUS = 'open' \hfil\\
+\item Welke afspraken waren er op zeven mei 2020? \hfil\\
+SELECT * FROM appointment WHERE CAST(INTERVALSTART AS date) = '2020-05-07' \hfil\\
+\item Zou u mij kunnen informeren omtrent de geplande afspraken die op zeven mei twintig twintig gepland stonden? \hfil\\
+SELECT * FROM appointment WHERE CAST(INTERVALSTART AS date) = '2020-05-07' \hfil\\
+\item Ik wil een overzicht hebben van alle mogelijke zorgtrajecten \hfil\\
+SELECT NAAM FROM zorgtraject GROUP BY NAAM \hfil\\
+\item Mag ik u verzoeken een overzicht te verstrekken van alle potentiële trajecten voor zorgverlening \hfil\\
+SELECT NAAM FROM zorgtraject GROUP BY NAAM \hfil\\
+\item Welke verzekeraars zijn er in 2006 bijgekomen? \hfil\\
+SELECT naam FROM systeemmaatschappijnl WHERE YEAR(startdatum) = '2006' \hfil\\
+\item Welke verzekeringsmaatschappijen zijn toegevoegd in 2006? \hfil\\
+SELECT naam FROM systeemmaatschappijnl WHERE YEAR(startdatum) = '2006' \hfil\\
+\item Hoeveel werknemers heb ik in mijn instelling? \hfil\\
+SELECT count(*) as AANTAL_WERKNEMERS FROM employee \hfil\\
+\item Zou u mij kunnen informeren omtrent het exacte aantal personeelsleden dat momenteel werkzaam is binnen mijn institutionele setting? \hfil\\
+SELECT count(*) as AANTAL_WERKNEMERS FROM employee \hfil\\
+\item Hoeveel zorgtrajecten hebben de naam 'Zorgtraject 1'? \hfil\\
+SELECT count(*) FROM zorgtraject WHERE NAAM = 'Zorgtraject 1' \hfil\\
+\item Hoeveel zorgtrajecten heten 'Zorgtraject 1'? \hfil\\
+SELECT count(*) FROM zorgtraject WHERE NAAM = 'Zorgtraject 1' \hfil\\
+\item Geef me alle zorgtraject IDs op alfabetische volgorde van naam, aflopend. \hfil\\
+SELECT id FROM zorgtraject ORDER BY naam DESC \hfil\\
+\item Mag ik u verzoeken om alle identificatienummers van de zorgtrajecten op een neerdalende wijze, gesorteerd op naam, aan mij te verstrekken? \hfil\\
+SELECT id FROM zorgtraject ORDER BY naam DESC \hfil\\
+\item Geef me alle cliënten die in een eengezinswoning wonen. \hfil\\
+SELECT * FROM patient WHERE HOUSETYPE = 'EENGEZW' \hfil\\
+\item Kun je me een lijst verstrekken van alle individuen die momenteel hun verblijfplaats hebben in een eengezinswoning? \hfil\\
+SELECT * FROM patient WHERE HOUSETYPE = 'EENGEZW' \hfil\\
+\item Kun je mij een lijst van de momenteel in gebruik zijnde middelen verstrekken? \hfil\\
+SELECT * FROM resource WHERE active = 1 \hfil\\
+\item Geef me alle actieve resources \hfil\\
+SELECT * FROM resource WHERE active = 1 \hfil\\
+\item Geef mij de namen van de patient groepen \hfil\\
+SELECT DISTINCT(groupname) FROM patientgroup \hfil\\
+\item Zou u mij de lijst van patiëntengroepen kunnen verstrekken? \hfil\\
+SELECT DISTINCT(groupname) FROM patientgroup \hfil\\
+\item Geef me alle afspraken van het afgelopen jaar \hfil\\
+SELECT * FROM appointment WHERE YEAR(intervalstart) = YEAR(GETDATE()) \hfil\\
+\item Ik wil u verzoeken mij een overzicht te verstrekken van alle afspraken die gedurende het afgelopen kalenderjaar hebben plaatsgevonden. \hfil\\
+SELECT * FROM appointment WHERE YEAR(intervalstart) = YEAR(GETDATE()) \hfil\\
+\item Welke klanten willen van te voren een sms krijgen? \hfil\\
+SELECT * FROM patient WHERE smsherinnering = 'ja' \hfil\\
+\item Welke klanten verkiezen vooraf een sms te ontvangen? \hfil\\
+SELECT * FROM patient WHERE smsherinnering = 'ja' \hfil\\
+\item Welke klanten zijn uit de database gewist? \hfil\\
+SELECT * FROM patient WHERE verwijderd = 'ja' \hfil\\
+\item Welke cliënten zijn verwijderd uit de database? \hfil\\
+SELECT * FROM patient WHERE verwijderd = 'ja' \hfil\\
+\item Wat zijn de verschillende soorten afspraken? \hfil\\
+SELECT name FROM appointmenttype GROUP BY name \hfil\\
+\item Kunt u mij informeren omtrent de diverse categorieën van afspraken? \hfil\\
+SELECT name FROM appointmenttype GROUP BY name \hfil\\
+\item Bij welke patiënten is het patient portaal geactiveerd? \hfil\\
+SELECT * FROM patient WHERE ispatientportalactivated = 1 \hfil\\
+\item Kun je mij vertellen welke patiënten momenteel hun patiëntportaal hebben geactiveerd? \hfil\\
+SELECT * FROM patient WHERE ispatientportalactivated = 1 \hfil\\
+\item Laat mij alle verstuurde smsjes zien. \hfil\\
+SELECT message FROM textmessage \hfil\\
+\item Ik verzoek je mij een weergave te verschaffen van alle verzonden sms-berichten. \hfil\\
+SELECT message FROM textmessage \hfil\\
+\item Wat is de functie van gebruiker Bosman? \hfil\\
+SELECt function FROM employee WHERE abbreviation = 'Bosman' \hfil\\
+\item Welke functie heeft gebruiker Bosman binnen de organisatie? \hfil\\
+SELECt function FROM employee WHERE abbreviation = 'Bosman' \hfil\\
+\item Laat me de behandelingen zien die gesloten zijn. \hfil\\
+SELECT * FROM behandeling WHERE status = 'gesloten' \hfil\\
+\item Laat me alle gesloten behandelingen zien. \hfil\\
+SELECT * FROM behandeling WHERE status = 'gesloten' \hfil\\
+\item Laat me vijf afspraken zien \hfil\\
+SELECT top 5 * FROM appointment \hfil\\
+\item Mag ik u vriendelijk verzoeken vijf geplande afspraken aan mij te tonen? \hfil\\
+SELECT top 5 * FROM appointment \hfil\\
+\item Toon me alle afspraken van 2023 \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 \hfil\\
+\item Laat me alle gemaakte afspraken uit 2023 zien \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 \hfil\\
+\item Toon me de extra verzekeringen. \hfil\\
+SELECT * FROM maatschappijpakket WHERE dekkingstype = 'aanvullend' \hfil\\
+\item Laat mij alle aanvullende verzekeringen zien. \hfil\\
+SELECT * FROM maatschappijpakket WHERE dekkingstype = 'aanvullend' \hfil\\
+\item Laat mij alle afmeldingen zien. \hfil\\
+SELECT * FROM appointmentparticipation WHERE absent = 1 \hfil\\
+\item Verschaf mij alle annuleringen \hfil\\
+SELECT * FROM appointmentparticipation WHERE absent = 1 \hfil\\
+\item Geef mij de startdatum van alle behandelingen \hfil\\
+SELECT startdatum FROM behandeling \hfil\\
+\item Verstrek mij de aanvangsdatum van iedere behandeling. \hfil\\
+SELECT startdatum FROM behandeling \hfil\\
+\item Laat me alle zorgtrajecten zien, gesorteerd op de begindatum. \hfil\\
+SELECT * FROM zorgtraject ORDER BY startdatum \hfil\\
+\item Geef alle zorgtrajecten gesorteerd op startdatum \hfil\\
+SELECT * FROM zorgtraject ORDER BY startdatum \hfil\\
+\item Haal de ID's van alle participanten op. \hfil\\
+SELECT id FROM participant \hfil\\
+\item Verstrek mij de identificatienummers van alle deelnemers. \hfil\\
+SELECT id FROM participant \hfil\\
+\item Hoe lang duurt een medicatiegesprek meestal? \hfil\\
+SELECT standardduration FROM appointmenttype WHERE name = 'Medicatiegesprek' \hfil\\
+\item Hoe lang duurt een medicatiegesprek normaal gesproken? \hfil\\
+SELECT standardduration FROM appointmenttype WHERE name = 'Medicatiegesprek' \hfil\\
+\item Wordt er een sms gestuurd voorafgaand aan een opnamegesprek? \hfil\\
+SELECT sms_reminder FROM appointmenttype WHERE name = 'Opnamegesprek' \hfil\\
+\item Vindt er een voorafgaande kennisgeving via sms plaats voorafgaand aan een intakegesprek? \hfil\\
+SELECT sms_reminder FROM appointmenttype WHERE name = 'Opnamegesprek' \hfil\\
+\item Geef me de ids van de productinstances waar de kosten 500 euro zijn \hfil\\
+SELECT id FROM patientproductinstance WHERE amount = 500 \hfil\\
+\item Verschaf mij de identificatienummers van de productinstanties waar de kosten gelijk zijn aan vijfhonderd euro. \hfil\\
+SELECT id FROM patientproductinstance WHERE amount = 500 \hfil\\
+\item Geef mij alle behandelingen die zijn gestart in 2020 \hfil\\
+SELECT * FROM behandeling WHERE year(startdatum) = 2020 \hfil\\
+\item Toon mij alle behandelingen die zijn aangevangen in het jaar tweeduizendtwintig. \hfil\\
+SELECT * FROM behandeling WHERE year(startdatum) = 2020 \hfil\\
+\item Welke pakketten zijn er? \hfil\\
+SELECT pakketnaam FROM maatschappijpakket GROUP BY pakketnaam \hfil\\
+\item Kunt u mij een overzicht verschaffen van de verschillende pakketten? \hfil\\
+SELECT pakketnaam FROM maatschappijpakket GROUP BY pakketnaam \hfil\\
+\item Wat voor type verwijs organisaties zijn er? \hfil\\
+SELECT DISTINCT name FROM referrerorganizationtype \hfil\\
+\item Kunt u mij informeren over de diverse types van verwijsorganisaties? \hfil\\
+SELECT DISTINCT name FROM referrerorganizationtype \hfil\\
+\item Geef me alle patiëntgroepen geordend op startdatum \hfil\\
+SELECT groupname FROM patientgroup ORDER BY datestart \hfil\\
+\item Toon alle patiëntgroepen gesorteerd op begindatum. \hfil\\
+SELECT groupname FROM patientgroup ORDER BY datestart \hfil\\
+\item Geef me het aantal zpm consultaties die het type 'individual' hebben \hfil\\
+SELECT count(*) FROM episodezpmconsultation WHERE type = 'individual' \hfil\\
+\item Hoeveel individuele zpm besprekingen zijn er  \hfil\\
+SELECT count(*) FROM episodezpmconsultation WHERE type = 'individual' \hfil\\
+\item Toon mij de afspraken waar het verwijstype 'self initiative' is \hfil\\
+SELECT * FROM appointment WHERE referrerfixedtype = 'self_initiative' \hfil\\
+\item Geef me alle afspraken met het verwijstype self initiative \hfil\\
+SELECT * FROM appointment WHERE referrerfixedtype = 'self_initiative' \hfil\\
+\item Laat me de zpm consultaties zien die in de ochtend gestart zijn. \hfil\\
+SELECT * FROM episodezpmconsultation WHERE hour(actualstarttime) < 12 \hfil\\
+\item Toon mij de zorgprestatiemodel consultaties die in de ochtend zijn aangevangen. \hfil\\
+SELECT * FROM episodezpmconsultation WHERE hour(actualstarttime) < 12 \hfil\\
+\item Ik wil de voor- en achternamen van alle mannelijke werknemers \hfil\\
+SELECT FIRSTNAME, SURNAME FROM employee WHERE GENDER = 1 \hfil\\
+\item Namen van mannelijke medewerkers. \hfil\\
+SELECT FIRSTNAME, SURNAME FROM employee WHERE GENDER = 1 \hfil\\
+\item Ik wil de data van vrouwelijke werknemers ouder dan 50. \hfil\\
+SELECT * FROM employee WHERE datediff(year, BIRTHDATE, current_date()) > 50 and GENDER = 2 \hfil\\
+\item Verstrek mij de gegevens van vrouwelijke personeelsleden die de leeftijd van 50 jaar overschrijden. \hfil\\
+SELECT * FROM employee WHERE datediff(year, BIRTHDATE, current_date()) > 50 and GENDER = 2 \hfil\\
+\item Ik wil alle klinieken in Utrecht weten \hfil\\
+SELECT NAAM, PLAATS FROM systeemzorginstelling WHERE LOWER(PLAATS) LIKE '%utrecht%' \hfil\\
+\item Verschaf mij een uitvoerige lijst van alle medische faciliteiten die gevestigd zijn in Utrecht \hfil\\
+SELECT NAAM, PLAATS FROM systeemzorginstelling WHERE LOWER(PLAATS) LIKE '%utrecht%' \hfil\\
+\item Hoe vaak is tinnitus gerapporteerd? \hfil\\
+SELECT count(*) FROM zorgtraject WHERE LOWER(NAAM) LIKE '%tinnitus%' \hfil\\
+\item In welke mate is tinnitus gerapporteerd in de database? \hfil\\
+SELECT count(*) FROM zorgtraject WHERE LOWER(NAAM) LIKE '%tinnitus%' \hfil\\
+\item Wat voor soort organisatie is Altrecht? \hfil\\
+SELECT referrerorganization.NAME as organisatie_naam, referrerorganizationtype.NAME as organisatie_type FROM referrerorganization LEFT JOIN referrerorganizationtype on referrerorganizationtype.id = referrerorganization.referrerorganizationtype_id WHERE referrerorganization.NAME = 'Altrecht' \hfil\\
+\item Kunt u mij verklaren welke soort organisatie Altrecht is? \hfil\\
+SELECT referrerorganization.NAME as organisatie_naam, referrerorganizationtype.NAME as organisatie_type FROM referrerorganization LEFT JOIN referrerorganizationtype on referrerorganizationtype.id = referrerorganization.referrerorganizationtype_id WHERE referrerorganization.NAME = 'Altrecht' \hfil\\
+\item Geef me een lijst met alle zorgverzekeraars en hun telefoonnummer. \hfil\\
+SELECT NAAM, TELEFOON FROM systeemmaatschappijnl \hfil\\
+\item Ik verzoek u om mij te voorzien van een uitputtende inventarisatie van alle zorgverzekeraars, alsmede hun corresponderende telefoonnummers. \hfil\\
+SELECT NAAM, TELEFOON FROM systeemmaatschappijnl \hfil\\
+\item Toon me een lijst van alle patiënten uit het buitenland. \hfil\\
+SELECT patient.* FROM patient LEFT JOIN systemcountry ON systemcountry.id = patient.land_id WHERE systemcountry.NAME != 'Nederland' \hfil\\
+\item Geef me een lijst met alle buitenlandse patiënten. \hfil\\
+SELECT patient.* FROM patient LEFT JOIN systemcountry ON systemcountry.id = patient.land_id WHERE systemcountry.NAME != 'Nederland' \hfil\\
+\item Ik wil een overzicht per functie hoeveel werknemers er in dienst zijn. \hfil\\
+SELECT employee.function, count(employee.function) as count FROM employee GROUP BY employee.function \hfil\\
+\item Ik wil weten hoeveel werknemers er per functie zijn. \hfil\\
+SELECT employee.function, count(employee.function) as count FROM employee GROUP BY employee.function \hfil\\
+\item Laat me de telefoonnummers zien van patiënten met de naam 'Meis' in zorgtraject 'Zorgtraject 2'. \hfil\\
+SELECT patient.telefoonmobiel, patient.telefoonthuis, patient.telefoonwerk FROM zorgtraject INNER JOIN patient on patient.id = zorgtraject.patient_id WHERE zorgtraject.naam = 'Zorgtraject 2' and patient.eigennaam = 'Meis' \hfil\\
+\item Geef me de telefoonnummers van patiënten genaamd 'Meis' die een zorgtraject genaamd 'Zorgtraject 2' hebben. \hfil\\
+SELECT patient.telefoonmobiel, patient.telefoonthuis, patient.telefoonwerk FROM zorgtraject INNER JOIN patient on patient.id = zorgtraject.patient_id WHERE zorgtraject.naam = 'Zorgtraject 2' and patient.eigennaam = 'Meis' \hfil\\
+\item Geef me het emailadres van alle patiënten die wonen aan de Kanaalstraat die ouder zijn dan 60 jaar. \hfil\\
+SELECT email FROM patient WHERE ADRESSTRAATNAAM = 'Kanaalweg' and DATEDIFF(year, geboortedatum, current_date) > 60 \hfil\\
+\item Zou u mij kunnen voorzien van de e-mailadressen van patiënten die ouder zijn dan zestig jaar en hun woonadres hebben aan de Kanaalstraat? \hfil\\
+SELECT email FROM patient WHERE ADRESSTRAATNAAM = 'Kanaalweg' and DATEDIFF(year, geboortedatum, current_date) > 60 \hfil\\
+\item Geef me alle ID's van patiënten die nu niet verzekerd zijn. \hfil\\
+SELECT patient_id, vervaldatum, verzekerd FROM assurantienl WHERE YEAR(vervaldatum) = '9999' and verzekerd = 'nee' \hfil\\
+\item Zou u mij alstublieft de identificatienummers willen verstrekken van degenen die momenteel niet beschikken over een geldige verzekeringspolis? \hfil\\
+SELECT patient_id, vervaldatum, verzekerd FROM assurantienl WHERE YEAR(vervaldatum) = '9999' and verzekerd = 'nee' \hfil\\
+\item Wat was de eerste afspraak? \hfil\\
+SELECT * FROM appointment ORDER BY intervalstart LIMIT 1 \hfil\\
+\item Welke afspraak was de eerste afspraak? \hfil\\
+SELECT * FROM appointment ORDER BY intervalstart LIMIT 1 \hfil\\
+\item Geef me de klanten waarbij het emailadres nog niet is ingevuld \hfil\\
+SELECT patient.id, patient.roepnaam, patient.eigennaam FROM patient LEFT JOIN patient_email on patient_email.patient_id = patient.id WHERE patient_email.email is NULL and patient.email = '' \hfil\\
+\item Voor welke cliënten ontbreekt het emailadres? \hfil\\
+SELECT patient.id, patient.roepnaam, patient.eigennaam FROM patient LEFT JOIN patient_email on patient_email.patient_id = patient.id WHERE patient_email.email is NULL and patient.email = '' \hfil\\
+\item Wat is de verhouding man vrouw in mijn instelling? \hfil\\
+SELECT geslacht, count(*) FROM patient GROUP BY geslacht \hfil\\
+\item Kun je mij informeren omtrent de genderverdeling binnen mijn huidige institutionele setting? \hfil\\
+SELECT geslacht, count(*) FROM patient GROUP BY geslacht \hfil\\
+\item Van welke patiënten weten we wel het bsn nummer, maar niet van welk type de identiteits identificatie is? \hfil\\
+SELECT * FROM patient WHERE bsnvalue != '999999999' and widtype = 'none' \hfil\\
+\item Welke patiënten hebben een BSN nummer, maar waarvan we het identificatietype niet weten? \hfil\\
+SELECT * FROM patient WHERE bsnvalue != '999999999' and widtype = 'none' \hfil\\
+\item Geef mij een lijst van alle afspraken op 6 mei 2020 voor 12u. \hfil\\
+SELECT * FROM appointment WHERE intervalstart < '2020-05-06 12:00:00' and intervalstart > '2020-05-06 00:00:00' \hfil\\
+\item Kun je mij alsjeblieft een overzicht geven van alle geplande afspraken op de ochtend van 6 mei 2020, voor 12 uur? \hfil\\
+SELECT * FROM appointment WHERE intervalstart < '2020-05-06 12:00:00' and intervalstart > '2020-05-06 00:00:00' \hfil\\
+\item Hoeveel mensen hebben een verzekering? \hfil\\
+SELECT count(*) FROM patient LEFT JOIN assurantienl ON assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' WHERE assurantienl.verzekerd = 'ja' \hfil\\
+\item Hoeveel cliënten zijn verzekerd? \hfil\\
+SELECT count(*) FROM patient LEFT JOIN assurantienl ON assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' WHERE assurantienl.verzekerd = 'ja' \hfil\\
+\item Geef me een lijst met de polisnummers van cliënten waarbij de assurantiecontrole voor 2019 is uitgevoerd. \hfil\\
+SELECT assurantienl.polisnummer FROM patient LEFT JOIN assurantienl ON assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' WHERE YEAR(patient.covcheckdate) < '2019' \hfil\\
+\item Kan ik een overzicht ontvangen van de polisnummers van patiënten waarbij de assurantiecontrole vóór het jaar 2019 heeft plaatsgevonden? \hfil\\
+SELECT assurantienl.polisnummer FROM patient LEFT JOIN assurantienl ON assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' WHERE YEAR(patient.covcheckdate) < '2019' \hfil\\
+\item Hoe oud is mijn patiënten populatie gemiddeld en hoeveel patiënten heb ik in totaal? \hfil\\
+SELECT AVG(DATEDIFF(year, geboortedatum, current_date)) as gemiddelde_leeftijd, count(*) as aantal_patienten FROM patient \hfil\\
+\item Kunt u mij de gemiddelde leeftijd van mijn patiëntenpopulatie verstrekken, alsmede het totale aantal patiënten in mijn zorginstelling? \hfil\\
+SELECT AVG(DATEDIFF(year, geboortedatum, current_date)) as gemiddelde_leeftijd, count(*) as aantal_patienten FROM patient \hfil\\
+\item Geef me een lijst van patiënten en hun zorgtraject waarbij een zorgtraject is gecanceld. \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.naam FROM zorgtraject LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE zorgtraject.status = 'cancelled' \hfil\\
+\item Kunt u mij een overzicht verschaffen van patiënten en hun respectievelijke zorgtrajecten waarbij een zorgtraject geannuleerd is? \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.naam FROM zorgtraject LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE zorgtraject.status = 'cancelled' \hfil\\
+\item Laat mij alle afmeldingen zien waar de reden ziekte was \hfil\\
+SELECT * FROM appointmentparticipation WHERE absent = 1 and absentreason LIKE '%ziek%' \hfil\\
+\item Toon mij alle afmeldingen waarbij de motivatie ziekte betrof \hfil\\
+SELECT * FROM appointmentparticipation WHERE absent = 1 and absentreason LIKE '%ziek%' \hfil\\
+\item Laat mij alle medewerkers met een Tenzinger e-mailadres zien \hfil\\
+SELECT * FROM employee WHERE email LIKE '%tenzinger%' \hfil\\
+\item Toon mij alle personeelsleden met een e-mailadres dat aan Tenzinger is gelieerd. \hfil\\
+SELECT * FROM employee WHERE email LIKE '%tenzinger%' \hfil\\
+\item Laat mij het totale aantal van de verschillende dekkingstypes zien, met de meest afgenomen bovenaan \hfil\\
+SELECT dekkingstype, count(id) FROM maatschappijpakket GROUP BY dekkingstype ORDER BY count(id) DESC \hfil\\
+\item Verschaf mij een overzicht van de aantallen van de diverse dekkingscategorieën, gerangschikt op frequentie van voorkomen in afnemende volgorde. \hfil\\
+SELECT dekkingstype, count(id) FROM maatschappijpakket GROUP BY dekkingstype ORDER BY count(id) DESC \hfil\\
+\item Toon me alle afspraken van 2023, beginnend met de meest recente. \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 ORDER BY created DESC \hfil\\
+\item Geef mij alle afspraken gemaakt in 2023, met de nieuwste afspraak bovenaan \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 ORDER BY created DESC \hfil\\
+\item Laat me alle type afspraken zien die langer duren dan 30 minuten, behalve evaluaties \hfil\\
+SELECT name FROM appointmenttype WHERE standardduration = 30 and LOWER(name) NOT LIKE '%evaluatie%' \hfil\\
+\item Toon mij de verschillende soorten afspraken die een duur hebben van meer dan een half uur, met uitzondering van evaluaties. \hfil\\
+SELECT name FROM appointmenttype WHERE standardduration = 30 and LOWER(name) NOT LIKE '%evaluatie%' \hfil\\
+\item Geef mij alle zorgverleners en laat zien of ze nog werkzaam zijn bij hun praktijk \hfil\\
+SELECT systeemzorgverlener.eigennaam, systeemzorgverlener.voorletters, systeemzorgverlener_zorginstelling.statusinpraktijk FROM systeemzorgverlener_zorginstelling LEFT JOIN systeemzorgverlener on systeemzorgverlener_zorginstelling.systeemzorgverlener_id = systeemzorgverlener.id \hfil\\
+\item Verschaf mij een overzicht van alle zorgverleners en geef aan of zij momenteel nog actief zijn in hun praktijk. \hfil\\
+SELECT systeemzorgverlener.eigennaam, systeemzorgverlener.voorletters, systeemzorgverlener_zorginstelling.statusinpraktijk FROM systeemzorgverlener_zorginstelling LEFT JOIN systeemzorgverlener on systeemzorgverlener_zorginstelling.systeemzorgverlener_id = systeemzorgverlener.id \hfil\\
+\item Geef mij de voor- en achternaam van clienten die in Amsterdam wonen en vrouw zijn \hfil\\
+SELECT firstnames, eigennaam FROM patient WHERE plaats = 'Amsterdam' and geslacht = 'vrouw' \hfil\\
+\item Ik wil graag de namen van vrouwelijke cliënten die momenteel in Amsterdam verblijven. \hfil\\
+SELECT firstnames, eigennaam FROM patient WHERE plaats = 'Amsterdam' and geslacht = 'vrouw' \hfil\\
+\item Geef mij het aantal afspraken per kliniek per jaar gesorteerd op jaar \hfil\\
+SELECT clinic_id, year(intervalstart), count(*) FROM appointment GROUP BY clinic_id, year(intervalstart) ORDER BY year(intervalstart) \hfil\\
+\item Verschaf me de aantallen afspraken per kliniek, geordend per jaar van afspraak. \hfil\\
+SELECT clinic_id, year(intervalstart), count(*) FROM appointment GROUP BY clinic_id, year(intervalstart) ORDER BY year(intervalstart) \hfil\\
+\item Geef mij de inschrijfdatum, voor- en achternaam, zorgtraject naam en zorgtraject startdatum van cliënten met een zorgtraject \hfil\\
+SELECT patient.firstnames, patient.eigennaam, patient.invoerdatum, zorgtraject.naam, zorgtraject.startdatum FROM patient INNER JOIN zorgtraject on patient.id = zorgtraject.patient_id \hfil\\
+\item Toon mij de registratiedatum en namen van cliënten, en naam en startdatum van het zorgtraject van cliënten momenteel deelnemend aan een zorgtraject. \hfil\\
+SELECT patient.firstnames, patient.eigennaam, patient.invoerdatum, zorgtraject.naam, zorgtraject.startdatum FROM patient INNER JOIN zorgtraject on patient.id = zorgtraject.patient_id \hfil\\
+\item Haal de messages van alle textmessages op waar 'bas' in voorkomt. \hfil\\
+SELECT message FROM textmessage WHERE message LIKE '%bas%' \hfil\\
+\item Verkrijg de berichten van alle tekstberichten waarin de term 'bas' aanwezig is. \hfil\\
+SELECT message FROM textmessage WHERE message LIKE '%bas%' \hfil\\
+\item Haal alle emailadressen op waar 'gmail' in voorkomt. \hfil\\
+SELECT email FROM patient_email WHERE email LIKE '%gmail%' \hfil\\
+\item Verzamel de e-mailadressen waarin het domein 'gmail' is opgenomen. \hfil\\
+SELECT email FROM patient_email WHERE email LIKE '%gmail%' \hfil\\
+\item Haal alle ID's op van patienten waar 'brummel' voorkomt in de achternaam. \hfil\\
+SELECT id FROM PATIENT WHERE lower(eigennaam) LIKE '%brummel%' \hfil\\
+\item Verkrijg de identificatienummers van patiënten waarin het woord 'brummel' deel uitmaakt van de achternaam. \hfil\\
+SELECT id FROM PATIENT WHERE lower(eigennaam) LIKE '%brummel%' \hfil\\
+\item Laat mij alle patiënten en hun privacy bezwaren zien \hfil\\
+SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id \hfil\\
+\item Toon mij een overzicht van alle patiënten inclusief hun privacybezwaren \hfil\\
+SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id \hfil\\
+\item Geef mij de namen en accountnamen van medewerkers die gedeactiveerd zijn, samen met de datum waarop deze is gedeactiveerd \hfil\\
+SELECT firstname, surname, abbreviation, deactivate FROM employee WHERE deactivate is not null \hfil\\
+\item Toon me de namen en accountnamen van inactieve medewerkers, samen met de deactiveringsdatum \hfil\\
+SELECT firstname, surname, abbreviation, deactivate FROM employee WHERE deactivate is not null \hfil\\
+\item Geef mij alle zorgverleners, hun praktijknaam, en laat zien of ze nog werkzaam zijn bij hun praktijk \hfil\\
+SELECT systeemzorgverlener.eigennaam, systeemzorgverlener.voorletters, systeemzorgverlener_zorginstelling.statusinpraktijk, systeemzorginstelling.naam FROM systeemzorgverlener_zorginstelling INNER JOIN systeemzorgverlener on systeemzorgverlener_zorginstelling.systeemzorgverlener_id = systeemzorgverlener.id INNER JOIN systeemzorginstelling on systeemzorgverlener_zorginstelling.systeemzorginstelling_id = systeemzorginstelling.id \hfil\\
+\item Verschaf mij een opsomming van zorgverleners met hun respectieve praktijknamen, en geef aan of zij nog actief zijn in hun praktijk. \hfil\\
+SELECT systeemzorgverlener.eigennaam, systeemzorgverlener.voorletters, systeemzorgverlener_zorginstelling.statusinpraktijk, systeemzorginstelling.naam FROM systeemzorgverlener_zorginstelling INNER JOIN systeemzorgverlener on systeemzorgverlener_zorginstelling.systeemzorgverlener_id = systeemzorgverlener.id INNER JOIN systeemzorginstelling on systeemzorgverlener_zorginstelling.systeemzorginstelling_id = systeemzorginstelling.id \hfil\\
+\item Hoeveel psychiaters hebben wij in onze database? \hfil\\
+SELECT count(function) FROM employee WHERE lower(function) like '%psychiater%' \hfil\\
+\item Hoeveel psychiaters zijn er geregistreerd in onze gegevens? \hfil\\
+SELECT count(function) FROM employee WHERE lower(function) like '%psychiater%' \hfil\\
+\item Per soort kliniek, hoeveel klinieken zijn er? \hfil\\
+SELECT zorgverlenertype, count(id) FROM kliniek WHERE bezoekplaats = 'Utrecht' GROUP BY zorgverlenertype \hfil\\
+\item Hoeveel instellingen zijn er per type kliniek geregistreerd? \hfil\\
+SELECT zorgverlenertype, count(id) FROM kliniek WHERE bezoekplaats = 'Utrecht' GROUP BY zorgverlenertype \hfil\\
+\item Wat is de rol van Hannah Hendriks en wat is haar contact e-mailadres? \hfil\\
+SELECT function, email FROM employee WHERE firstname = 'Hannah' and surname = 'Hendriks'; \hfil\\
+\item Welke functie heeft gebruiker Hannah Hendriks binnen de organisatie en op welk e-mailadres kan ik haar bereiken? \hfil\\
+SELECT function, email FROM employee WHERE firstname = 'Hannah' and surname = 'Hendriks'; \hfil\\
+\item Geef mij de namen van alle patiënten samen met de datum van hun eerste afspraak bij ons \hfil\\
+SELECT roepnaam, eigennaam, first_appointment_date FROM patient \hfil\\
+\item Toon mij de namen van alle cliënten en de datum van hun initiële consultatie bij onze organisatie \hfil\\
+SELECT roepnaam, eigennaam, first_appointment_date FROM patient \hfil\\
+\item Toon mij de lijst met patiënten zonder privacybezwaren \hfil\\
+SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.referrer_id = zorgtraject.patient_id WHERE zorgtraject.privacybezwaren = 'nee' \hfil\\
+\item Geef mij alle patienten die geen privacybezwaren hebben \hfil\\
+SELECT DISTINCT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.referrer_id = zorgtraject.patient_id WHERE zorgtraject.privacybezwaren = 'nee' \hfil\\
+\item Geef me het emailadres van Tom Winter \hfil\\
+SELECT patient.ROEPNAAM , patient.EIGENNAAM, patient_email.EMAIL FROM patient LEFT JOIN patient_email on patient_email.patient_id = patient.id WHERE patient.ROEPNAAM = 'Tom' and patient.EIGENNAAM = 'Winter' \hfil\\
+\item Verschaf mij het e-mailadres van de individu genaamd Tom Winter. \hfil\\
+SELECT patient.ROEPNAAM , patient.EIGENNAAM, patient_email.EMAIL FROM patient LEFT JOIN patient_email on patient_email.patient_id = patient.id WHERE patient.ROEPNAAM = 'Tom' and patient.EIGENNAAM = 'Winter' \hfil\\
+\item Welke zorgtrajecten heeft Jelle Belfor op dit moment? \hfil\\
+SELECT patient.ROEPNAAM, patient.EIGENNAAM, zorgtraject.NAAM FROM patient LEFT JOIN zorgtraject on zorgtraject.patient_id = patient.id WHERE zorgtraject.PATIENT_ID = 4 and zorgtraject.EINDDATUM is null \hfil\\
+\item Welke zorgtrajecten volgt Jelle Belfor momenteel? \hfil\\
+SELECT patient.ROEPNAAM, patient.EIGENNAAM, zorgtraject.NAAM FROM patient LEFT JOIN zorgtraject on zorgtraject.patient_id = patient.id WHERE zorgtraject.PATIENT_ID = 4 and zorgtraject.EINDDATUM is null \hfil\\
+\item Wat is het aantal patiënten met een aanvullende verzekering? \hfil\\
+SELECT DISTINCT(count(patient.ID)), assurantienl.dekkingstype FROM patient LEFT JOIN assurantienl on assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum WHERE LOWER(assurantienl.DEKKINGSTYPE) LIKE '%aanvullend%' GROUP BY assurantienl.DEKKINGSTYPE \hfil\\
+\item Hoeveel patiënten zijn aanvullend verzekerd? \hfil\\
+SELECT DISTINCT(count(patient.ID)), assurantienl.dekkingstype FROM patient LEFT JOIN assurantienl on assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum WHERE LOWER(assurantienl.DEKKINGSTYPE) LIKE '%aanvullend%' GROUP BY assurantienl.DEKKINGSTYPE \hfil\\
+\item Ik wil van alle afspraken na 2019 weten hoeveel afspraken per type er zijn geweest \hfil\\
+SELECT appointmenttype.NAME, count(*) FROM appointmenttype LEFT JOIN appointment on appointment.appointmenttype_id = appointmenttype.id WHERE appointment.INTERVALSTART >= '2020-01-01' GROUP BY appointmenttype.NAME \hfil\\
+\item Ik verzoek om een overzicht van het aantal afspraken, gespecificeerd naar type, die hebben plaatsgevonden na het jaar 2019. \hfil\\
+SELECT appointmenttype.NAME, count(*) FROM appointmenttype LEFT JOIN appointment on appointment.appointmenttype_id = appointmenttype.id WHERE appointment.INTERVALSTART >= '2020-01-01' GROUP BY appointmenttype.NAME \hfil\\
+\item Bij welke organisatie werkt I. Hendriksen? \hfil\\
+SELECT referrerindividual.INITIALS, referrerindividual.SURNAME, referrerorganization.NAME FROM referrerorganization LEFT JOIN referrerindividual on referrerindividual.referrerorganization_id = referrerorganization.id WHERE referrerindividual.INITIALS = 'I' and referrerindividual.SURNAME = 'Hendriksen' \hfil\\
+\item Welke organisatie heeft I. Hendriksen als werknemer? \hfil\\
+SELECT referrerindividual.INITIALS, referrerindividual.SURNAME, referrerorganization.NAME FROM referrerorganization LEFT JOIN referrerindividual on referrerindividual.referrerorganization_id = referrerorganization.id WHERE referrerindividual.INITIALS = 'I' and referrerindividual.SURNAME = 'Hendriksen' \hfil\\
+\item Geef me een overzicht van de 5 meest voorkomende behandelingen \hfil\\
+SELECT NAAM, count(NAAM) FROM behandeling GROUP BY NAAM ORDER BY COUNT(NAAM) DESC LIMIT 5 \hfil\\
+\item Wat zijn de vijf meest voorkomende behandelingen? \hfil\\
+SELECT NAAM, count(NAAM) FROM behandeling GROUP BY NAAM ORDER BY COUNT(NAAM) DESC LIMIT 5 \hfil\\
+\item Welke afspraken heeft cliënt Niels Jong gehad? \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentparticipation ON appointment.id = appointmentparticipation.appointment_id LEFT JOIN participant ON participant.id = appointmentparticipation.participant_id LEFT JOIN patient ON patient.id = participant.patient_id WHERE patient.ROEPNAAM = 'Niels' and patient.EIGENNAAM = 'Jong' \hfil\\
+\item Kunt u mij alstublieft informeren over de afspraken die cliënt Niels Jong heeft gehad? \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentparticipation ON appointment.id = appointmentparticipation.appointment_id LEFT JOIN participant ON participant.id = appointmentparticipation.participant_id LEFT JOIN patient ON patient.id = participant.patient_id WHERE patient.ROEPNAAM = 'Niels' and patient.EIGENNAAM = 'Jong' \hfil\\
+\item Geef me een overzicht van de behandelingen die client 39 heeft gehad. \hfil\\
+SELECT behandeling.* FROM patient LEFT JOIN zorgtraject ON zorgtraject.patient_id = patient.id LEFT JOIN behandeling ON behandeling.zorgtraject_id = zorgtraject.id WHERE patient.ID = 39 \hfil\\
+\item Zou u zo vriendelijk willen zijn om mij een opsomming te verstrekken van de behandelingen die zijn ondergaan door cliënt 39? \hfil\\
+SELECT behandeling.* FROM patient LEFT JOIN zorgtraject ON zorgtraject.patient_id = patient.id LEFT JOIN behandeling ON behandeling.zorgtraject_id = zorgtraject.id WHERE patient.ID = 39 \hfil\\
+\item Laat me de eerste 250 behandelingen en zorgtrajecten zien, inclusief hun ID's. \hfil\\
+SELECT zorgtraject.id FROM zorgtraject UNION SELECT behandeling.id FROM behandeling LIMIT 250 \hfil\\
+\item Toon alle behandelingen en zorgtraject IDs, gelimiteerd tot de eerste 250 resultaten. \hfil\\
+SELECT zorgtraject.id FROM zorgtraject UNION SELECT behandeling.id FROM behandeling LIMIT 250 \hfil\\
+\item Geef me de eerste afspraak van elke patient. \hfil\\
+SELECT patient.id AS patient_id, appointment.* FROM (SELECT patient.id, min(appointment.intervalstart) AS min_intervalstart FROM appointment LEFT JOIN appointmentparticipation ON appointment.id = appointmentparticipation.appointment_id LEFT JOIN participant ON participant.id = appointmentparticipation.participant_id LEFT JOIN patient ON patient.id = participant.patient_id GROUP BY patient.id) AS earliest_appointments INNER JOIN patient on patient.id = earliest_appointments.id INNER JOIN appointment on appointment.intervalstart = earliest_appointments.min_intervalstart \hfil\\
+\item Laat mij de initiële afspraak van iedere individuele patiënt zien. \hfil\\
+SELECT patient.id AS patient_id, appointment.* FROM (SELECT patient.id, min(appointment.intervalstart) AS min_intervalstart FROM appointment LEFT JOIN appointmentparticipation ON appointment.id = appointmentparticipation.appointment_id LEFT JOIN participant ON participant.id = appointmentparticipation.participant_id LEFT JOIN patient ON patient.id = participant.patient_id GROUP BY patient.id) AS earliest_appointments INNER JOIN patient on patient.id = earliest_appointments.id INNER JOIN appointment on appointment.intervalstart = earliest_appointments.min_intervalstart \hfil\\
+\item Ik wil een overzicht hoeveel patiënten er zijn per leeftijdsgroep '<25', '25-49', '50-74', en '>74' \hfil\\
+SELECT SUM(CASE WHEN leeftijd < 25 THEN 1 ELSE 0 END) AS Jonger_dan_25, SUM(CASE WHEN leeftijd BETWEEN 25 AND 49 THEN 1 ELSE 0 END) AS tussen_25_en_49, SUM(CASE WHEN leeftijd BETWEEN 50 AND 74 THEN 1 ELSE 0 END) AS tussen_50_en_74, SUM(CASE WHEN leeftijd > 74 THEN 1 ELSE 0 END) AS ouder_dan_74 FROM (SELECT id, DATEDIFF(year, geboortedatum, current_date) AS leeftijd FROM patient) AS leeftijd_tabel INNER JOIN patient on patient.id = leeftijd_tabel.id \hfil\\
+\item Verschaf mij een opsomming van het aantal patiënten gegroepeerd op leeftijdscategorieën '<25', '25-49', '50-74', en '>74' \hfil\\
+SELECT SUM(CASE WHEN leeftijd < 25 THEN 1 ELSE 0 END) AS Jonger_dan_25, SUM(CASE WHEN leeftijd BETWEEN 25 AND 49 THEN 1 ELSE 0 END) AS tussen_25_en_49, SUM(CASE WHEN leeftijd BETWEEN 50 AND 74 THEN 1 ELSE 0 END) AS tussen_50_en_74, SUM(CASE WHEN leeftijd > 74 THEN 1 ELSE 0 END) AS ouder_dan_74 FROM (SELECT id, DATEDIFF(year, geboortedatum, current_date) AS leeftijd FROM patient) AS leeftijd_tabel INNER JOIN patient on patient.id = leeftijd_tabel.id \hfil\\
+\item Hoeveel patiënten werden er het afgelopen jaar per maand geregistreerd? \hfil\\
+SELECT MONTH(INVOERDATUM) MONTH, COUNT(*) FROM patient WHERE YEAR(INVOERDATUM) = YEAR(CURRENT_DATE) GROUP BY  MONTH(INVOERDATUM) ORDER BY MONTH \hfil\\
+\item Ik wil graag een gedetailleerde weergave van het aantal patiënten dat maandelijks geregistreerd is gedurende het afgelopen jaar. \hfil\\
+SELECT MONTH(INVOERDATUM) MONTH, COUNT(*) FROM patient WHERE YEAR(INVOERDATUM) = YEAR(CURRENT_DATE) GROUP BY  MONTH(INVOERDATUM) ORDER BY MONTH \hfil\\
+\item Geef me de ID's en namen van de patiënten die het depressie traject gestart zijn na 2018. \hfil\\
+SELECT patient.id, patient.roepnaam, patient.eigennaam FROM zorgtraject LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE LOWER(zorgtraject.naam) = 'depressie' and YEAR(zorgtraject.startdatum) > 2018 \hfil\\
+\item Toon mij de identificatienummers en namen van de patiënten die na het jaar 2018 zijn begonnen met het depressietraject. \hfil\\
+SELECT patient.id, patient.roepnaam, patient.eigennaam FROM zorgtraject LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE LOWER(zorgtraject.naam) = 'depressie' and YEAR(zorgtraject.startdatum) > 2018 \hfil\\
+\item Geef me van alle patiënten hun IDs, namen en in welke gemeente ze wonen \hfil\\
+SELECT patient.id, patient.roepnaam, patient.eigennaam, systemmunicipality.name FROM patient LEFT JOIN systempostalcode on systempostalcode.postalcode = IFF(patient.verwijderd='ja', '0000', LEFT(patient.postcode,4)) LEFT JOIN systempostalcode_systemmunicipality on systempostalcode_systemmunicipality.systempostalcode_id = systempostalcode.id LEFT JOIN systemmunicipality on systemmunicipality.id = systempostalcode_systemmunicipality.systemmunicipality_id \hfil\\
+\item Verstrek mij de identificatienummers, volledige namen en gemeentes van alle patiënten \hfil\\
+SELECT patient.id, patient.roepnaam, patient.eigennaam, systemmunicipality.name FROM patient LEFT JOIN systempostalcode on systempostalcode.postalcode = IFF(patient.verwijderd='ja', '0000', LEFT(patient.postcode,4)) LEFT JOIN systempostalcode_systemmunicipality on systempostalcode_systemmunicipality.systempostalcode_id = systempostalcode.id LEFT JOIN systemmunicipality on systemmunicipality.id = systempostalcode_systemmunicipality.systemmunicipality_id \hfil\\
+\item Geef me de verzekeringsmaatschappij van patient 53 \hfil\\
+SELECT systeemmaatschappijnl.* FROM patient LEFT JOIN assurantienl on assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' LEFT JOIN systeemmaatschappijnl on systeemmaatschappijnl.id = assurantienl.maatschappij_id WHERE patient.id = 53 \hfil\\
+\item Verleen mij inzage in de verzekeringsmaatschappij van cliënt 53. \hfil\\
+SELECT systeemmaatschappijnl.* FROM patient LEFT JOIN assurantienl on assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' LEFT JOIN systeemmaatschappijnl on systeemmaatschappijnl.id = assurantienl.maatschappij_id WHERE patient.id = 53 \hfil\\
+\item Bij welke afspraken zijn cliënten nog niet aangemeld? \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%niet aangemeld%' \hfil\\
+\item Welke afspraken betreffen cliënten die nog niet zijn aangemeld? \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%niet aangemeld%' \hfil\\
+\item Geef me alle afspraken van Liesbeth Bruijn in 2018. \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentparticipation on appointmentparticipation.appointment_id = appointment.id LEFT JOIN participant on participant.id = appointmentparticipation.participant_id LEFT JOIN employee on employee.id = participant.employee_id WHERE employee.firstname = 'Liesbeth' and employee.surname = 'Bruijn' and YEAR(appointment.intervalstart) = '2018' \hfil\\
+\item Verschaf mij een overzicht van alle afspraken van Liesbeth Bruijn gedurende het jaar 2018. \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentparticipation on appointmentparticipation.appointment_id = appointment.id LEFT JOIN participant on participant.id = appointmentparticipation.participant_id LEFT JOIN employee on employee.id = participant.employee_id WHERE employee.firstname = 'Liesbeth' and employee.surname = 'Bruijn' and YEAR(appointment.intervalstart) = '2018' \hfil\\
+\item Bij welke koepelorganisatie zitten de verzekerde cliënten? \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, koepelorganisatie.naam FROM patient LEFT JOIN assurantienl ON assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' LEFT JOIN systeemmaatschappijnl on systeemmaatschappijnl.id = assurantienl.maatschappij_id LEFT JOIN koepelorganisatie_maatschappij on koepelorganisatie_maatschappij.maatschappij_id = systeemmaatschappijnl.id LEFT JOIN koepelorganisatie on koepelorganisatie.id = koepelorganisatie_maatschappij.koepelorganisatie_id WHERE assurantienl.verzekerd = 'ja' \hfil\\
+\item Welke overkoepelende organisatie bedient de verzekerde cliënten? \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, koepelorganisatie.naam FROM patient LEFT JOIN assurantienl ON assurantienl.patient_id = patient.id AND current_timestamp BETWEEN assurantienl.ingangsdatum AND assurantienl.vervaldatum AND assurantienl.dekkingstype='basis' LEFT JOIN systeemmaatschappijnl on systeemmaatschappijnl.id = assurantienl.maatschappij_id LEFT JOIN koepelorganisatie_maatschappij on koepelorganisatie_maatschappij.maatschappij_id = systeemmaatschappijnl.id LEFT JOIN koepelorganisatie on koepelorganisatie.id = koepelorganisatie_maatschappij.koepelorganisatie_id WHERE assurantienl.verzekerd = 'ja' \hfil\\
+\item Geef me een overzicht van patiënten en hun behandelingen die nog niet zijn uitgevoerd. Sorteer het overzicht op achternaam. \hfil\\
+SELECT distinct(behandeling.id) as id_check, patient.roepnaam, patient.eigennaam, behandeling.* FROM behandeling LEFT JOIN behandelingggz_systeemggzactiviteit on behandelingggz_systeemggzactiviteit.behandeling_id = behandeling.id LEFT JOIN zorgtraject on behandeling.zorgtraject_id = zorgtraject.id LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE behandelingggz_systeemggzactiviteit.uitgevoerd = 'nee' ORDER BY patient.eigennaam \hfil\\
+\item Verschaf mij een overzicht van de patiënten en hun behandelingen die nog niet zijn uitgevoerd, gerangschikt op achternaam. \hfil\\
+SELECT distinct(behandeling.id) as id_check, patient.roepnaam, patient.eigennaam, behandeling.* FROM behandeling LEFT JOIN behandelingggz_systeemggzactiviteit on behandelingggz_systeemggzactiviteit.behandeling_id = behandeling.id LEFT JOIN zorgtraject on behandeling.zorgtraject_id = zorgtraject.id LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE behandelingggz_systeemggzactiviteit.uitgevoerd = 'nee' ORDER BY patient.eigennaam \hfil\\
+\item Geef me alle behandelingen van patient 3 die uitgevoerd zijn na 2015. \hfil\\
+SELECT behandeling.*, behandelingggz_systeemggzactiviteit.uitvoerdatum FROM behandeling LEFT JOIN behandelingggz_systeemggzactiviteit on behandelingggz_systeemggzactiviteit.behandeling_id = behandeling.id LEFT JOIN zorgtraject on behandeling.zorgtraject_id = zorgtraject.id LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE patient.id = 3 and YEAR(behandelingggz_systeemggzactiviteit.uitvoerdatum) > 2015 ORDER BY behandeling.id \hfil\\
+\item Verschaf mij een overzicht van de uitgevoerde behandelingen betreffende patiënt 3 die hebben plaatsgevonden na het jaar 2015. \hfil\\
+SELECT behandeling.*, behandelingggz_systeemggzactiviteit.uitvoerdatum FROM behandeling LEFT JOIN behandelingggz_systeemggzactiviteit on behandelingggz_systeemggzactiviteit.behandeling_id = behandeling.id LEFT JOIN zorgtraject on behandeling.zorgtraject_id = zorgtraject.id LEFT JOIN patient on patient.id = zorgtraject.patient_id WHERE patient.id = 3 and YEAR(behandelingggz_systeemggzactiviteit.uitvoerdatum) > 2015 ORDER BY behandeling.id \hfil\\
+\item Laat me alle tandartsverzekeringen zien die extra dekking bieden \hfil\\
+SELECT * FROM maatschappijpakket WHERE dekkingstype = 'aanvullend' and lower(pakketnaam) LIKE '%tand%' and lower(pakketnaam) NOT LIKE '%standaard%' \hfil\\
+\item Geef mij alle aanvullende tandartsverzekeringen \hfil\\
+SELECT * FROM maatschappijpakket WHERE dekkingstype = 'aanvullend' and lower(pakketnaam) LIKE '%tand%' and lower(pakketnaam) NOT LIKE '%standaard%' \hfil\\
+\item Laat mij alle medewerkers met een Medicore e-mailadres zien die een vast telefoonnummer hebben die start met 030 \hfil\\
+SELECT * FROM employee WHERE email LIKE '%medicore%' and phonehome LIKE '030%' \hfil\\
+\item Toon mij de lijst van werknemers met een Medicore e-mailadres, waarvan het vaste telefoonnummer begint met de cijferreeks 030. \hfil\\
+SELECT * FROM employee WHERE email LIKE '%medicore%' and phonehome LIKE '030%' \hfil\\
+\item Geef mij alle afspraken gemaakt in 2023 bij de patient thuis, met de laatste aangepaste afspraak bovenaan \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'patient' ORDER BY modified DESC \hfil\\
+\item Toon mij een overzicht van afspraken die in 2023 bij de patiënt thuis zijn gepland, gesorteerd op de meest recent aangepaste afspraak, waarbij de nieuwste bovenaan staat \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'patient' ORDER BY modified DESC \hfil\\
+\item Geef mij alle afspraken gemaakt in 2023 binnen de kliniek, met de oudste aangemaakte afspraak bovenaan \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'clinic' ORDER BY created \hfil\\
+\item Geef mij een geordende weergave van de afspraken binnen de kliniek die gecreëerd zijn in het jaar 2023, gerangschikt op basis van de initiële aanmaakdatum, waarbij de vroegst gemaakte afspraak als eerste wordt getoond. \hfil\\
+SELECT * FROM appointment WHERE YEAR(created) = 2023 and address_type = 'clinic' ORDER BY created \hfil\\
+\item Geef me de startdatums van alle zorgtrajecten van Hanna Donkelaar, oudste bovenaan \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.startdatum FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id WHERE patient.roepnaam = 'Hanna' and patient.eigennaam = 'Donkelaar' ORDER BY zorgtraject.startdatum \hfil\\
+\item Verschaf mij de aanvangsdata van de diverse zorgtrajecten van Hanna Donkelaar, waarbij de oudst gecreëerde zorgtrajecten als eerste worden gepresenteerd. \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.startdatum FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id WHERE patient.roepnaam = 'Hanna' and patient.eigennaam = 'Donkelaar' ORDER BY zorgtraject.startdatum \hfil\\
+\item Geef me de startdatum en einddatum van het laatst gestarte zorgtraject van Stefanie Van Norden \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.startdatum, zorgtraject.einddatum FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id WHERE patient.roepnaam = 'Stefanie' and patient.eigennaam = 'Van Norden' ORDER BY zorgtraject.startdatum DESC LIMIT 1 \hfil\\
+\item Verstrek mij de datum van aanvang en beëindiging van het recentst opgestarte zorgtraject van Stefanie Van Norden \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.startdatum, zorgtraject.einddatum FROM patient LEFT JOIN zorgtraject on patient.id = zorgtraject.patient_id WHERE patient.roepnaam = 'Stefanie' and patient.eigennaam = 'Van Norden' ORDER BY zorgtraject.startdatum DESC LIMIT 1 \hfil\\
+\item Wat is het referentietype van patiënt Theo Loon? \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, referrer.type FROM patient LEFT JOIN referrer on patient.referrer_id = referrer.id WHERE patient.roepnaam = 'Theo' and patient.eigennaam = 'Loon' \hfil\\
+\item Verstrek mij het referentietype van patiënt Theo Loon? \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, referrer.type FROM patient LEFT JOIN referrer on patient.referrer_id = referrer.id WHERE patient.roepnaam = 'Theo' and patient.eigennaam = 'Loon' \hfil\\
+\item Laat me de namen en e-mails van zowel patiënten als medewerkers zien. \hfil\\
+SELECT roepnaam, eigennaam, email FROM patient UNION SELECT firstname, surname, email FROM employee \hfil\\
+\item Geef me de voornaam, achternaam en e-mailadressen van zowel patiënten als medewerkers \hfil\\
+SELECT roepnaam, eigennaam, email FROM patient UNION SELECT firstname, surname, email FROM employee \hfil\\
+\item Heeft patient Martin Veen eventuele bezwaren met betrekking tot privacy? \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.referrer_id = zorgtraject.patient_id WHERE patient.roepnaam = 'Martin' and patient.eigennaam = 'Veen' \hfil\\
+\item Heeft patient Martin Veen privacybezwaren? \hfil\\
+SELECT patient.roepnaam, patient.eigennaam, zorgtraject.privacybezwaren FROM patient LEFT JOIN zorgtraject on patient.referrer_id = zorgtraject.patient_id WHERE patient.roepnaam = 'Martin' and patient.eigennaam = 'Veen' \hfil\\
+\item Laat de ID's zien van de eerste 250 zorgverleners die zijn geïmporteerd, gesorteerd op achternaam. \hfil\\
+SELECT id FROM SYSTEEMZORGVERLENER WHERE geimporteerd = 1 ORDER BY eigennaam LIMIT 250 \hfil\\
+\item Haal de ID's op van de eerste 250 geïmporteerde zorgverleners, gesorteerd op de eigennaam. \hfil\\
+SELECT id FROM SYSTEEMZORGVERLENER WHERE geimporteerd = 1 ORDER BY eigennaam LIMIT 250 \hfil\\
+\item Haal de namen op van de eerste 666 GGZ klinieken, gesorteerd op het telefoonnummer. \hfil\\
+SELECT naam FROM KLINIEK WHERE zorgverleningsoort = 'ggz' ORDER BY telefoon LIMIT 666 \hfil\\
+\item Toon de namen van de initiële 666 GGZ-klinieken, gerangschikt op basis van het telefoonnummer. \hfil\\
+SELECT naam FROM KLINIEK WHERE zorgverleningsoort = 'ggz' ORDER BY telefoon LIMIT 666 \hfil\\
+\item Haal de AGB code's op van de eerste tweehonderd uzovi maatschappijen, gesorteerd op de AGB code. \hfil\\
+SELECT agbcode FROM SYSTEEMMAATSCHAPPIJNL WHERE invoer = 'uzovi' ORDER BY agbcode LIMIT 200 \hfil\\
+\item Verstrek de AGB-codes van de initiële tweehonderd uzovi-maatschappijen, gerangschikt op basis van de AGB-code. \hfil\\
+SELECT agbcode FROM SYSTEEMMAATSCHAPPIJNL WHERE invoer = 'uzovi' ORDER BY agbcode LIMIT 200 \hfil\\
+\item Geef mij de woonplaats en jaar invoerdatum van cliënten die niet verwijderd zijn en geen emailadres hebben \hfil\\
+SELECT plaats, year(invoerdatum), count(*) FROM patient WHERE verwijderd = 'nee' AND email = '' GROUP BY plaats, year(invoerdatum) \hfil\\
+\item Laat me de woonplaats en het jaar van inschrijving zien van niet verwijderde cliënten zonder geregistreerd e-mailadres \hfil\\
+SELECT plaats, year(invoerdatum), count(*) FROM patient WHERE verwijderd = 'nee' AND email = '' GROUP BY plaats, year(invoerdatum) \hfil\\
+\item Toon me per cliënt het aantal actieve formulieren dat niet is verwijderd, en het aantal unieke behandelaren dat deze formulieren heeft aangemaakt. \hfil\\
+SELECT patient.id, count(DISTINCT emruserform.id) over (partition by patient.id), count(DISTINCT userformemployee_id) over (partition by patient.id) FROM patient INNER JOIN emruserform on patient.id = emruserform.patient_id WHERE status != 'deleted' and active = 1 \hfil\\
+\item Geef mij per client het aantal niet verwijderde, actieve formulieren en het aantal bijbehorende unieke behandelaren die het formulier aangemaakt hebben \hfil\\
+SELECT patient.id, count(DISTINCT emruserform.id) over (partition by patient.id), count(DISTINCT userformemployee_id) over (partition by patient.id) FROM patient INNER JOIN emruserform on patient.id = emruserform.patient_id WHERE status != 'deleted' and active = 1 \hfil\\
+\item Geef mij het aantal unieke cliënten en verzekeringen met dekkingstype basis die op dit moment geldig zijn \hfil\\
+SELECT count(DISTINCT patient.id), count(DISTINCT assurantienl.id) FROM patient INNER JOIN assurantienl on patient.id = assurantienl.patient_id WHERE assurantienl.dekkingstype = 'basis' and current_date between assurantienl.ingangsdatum and assurantienl.vervaldatum \hfil\\
+\item Hoeveel unieke clienten en unieke verzekeringen zijn er, die momenteel in het bezit zijn van een geldige basisverzekering \hfil\\
+SELECT count(DISTINCT patient.id), count(DISTINCT assurantienl.id) FROM patient INNER JOIN assurantienl on patient.id = assurantienl.patient_id WHERE assurantienl.dekkingstype = 'basis' and current_date between assurantienl.ingangsdatum and assurantienl.vervaldatum \hfil\\
+\item Laat mij alle open en gesloten behandelingen zien voor de basisggz \hfil\\
+SELECT * FROM behandeling WHERE behandelingtype = 'basisggz' and (status = 'gesloten' or status = 'open') \hfil\\
+\item Toon mij de behandelingen in de basis geestelijke gezondheidszorg, alleen de lopende en afgeronde \hfil\\
+SELECT * FROM behandeling WHERE behandelingtype = 'basisggz' and (status = 'gesloten' or status = 'open') \hfil\\
+\item Geef me alle afspraken die geannuleerd zijn. \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%geannuleerd%' \hfil\\
+\item Laat mij een overzicht zien van de geannuleerde afspraken. \hfil\\
+SELECT appointment.* FROM appointment LEFT JOIN appointmentstatus on appointmentstatus.id = appointment.systemappointmentstatus_id WHERE appointmentstatus.name LIKE '%geannuleerd%' \hfil\\
+\item Hoeveel taken heeft meneer Floris Gruijters voltooid? \hfil\\
+SELECT count(*) FROM employee LEFT JOIN basicmhcactivity on employee.id = basicmhcactivity.employee_id WHERE employee.firstname = 'Floris' and employee.surname = 'Gruijters' and basicmhcactivity.performed = 1 \hfil\\
+\item Hoeveel activiteiten heeft de heer Floris Gruijters uitgevoerd? \hfil\\
+SELECT count(*) FROM employee LEFT JOIN basicmhcactivity on employee.id = basicmhcactivity.employee_id WHERE employee.firstname = 'Floris' and employee.surname = 'Gruijters' and basicmhcactivity.performed = 1 \hfil\\
+\item Geef me alle namen van de zorgtrajecten na 2020 en tel hoeveel er van elk zorgtraject zijn, gesorteerd op alfabetische volgorde \hfil\\
+SELECT naam, count(naam) FROM zorgtraject WHERE year(startdatum) > 2020 GROUP BY naam ORDER BY naam \hfil\\
+\item Toon mij de zorgtrajectnamen gestart na 2020, en geef per zorgtaject het aantal ervan, geordend in alfabetische volgorde \hfil\\
+SELECT naam, count(naam) FROM zorgtraject WHERE year(startdatum) > 2020 GROUP BY naam ORDER BY naam \hfil\\
+\item Laat me zien hoeveel verzekeringen elke koepelorganisatie heeft. \hfil\\
+SELECT koepelorganisatie.naam, count(*) FROM systeemmaatschappijnl LEFT JOIN koepelorganisatie_maatschappij on systeemmaatschappijnl.id = koepelorganisatie_maatschappij.maatschappij_id LEFT JOIN koepelorganisatie on koepelorganisatie.id = koepelorganisatie_maatschappij.koepelorganisatie_id GROUP BY koepelorganisatie.naam \hfil\\
+\item Hoeveel verzekeringen bevat elke koepelorganisatie? \hfil\\
+SELECT koepelorganisatie.naam, count(*) FROM systeemmaatschappijnl LEFT JOIN koepelorganisatie_maatschappij on systeemmaatschappijnl.id = koepelorganisatie_maatschappij.maatschappij_id LEFT JOIN koepelorganisatie on koepelorganisatie.id = koepelorganisatie_maatschappij.koepelorganisatie_id GROUP BY koepelorganisatie.naam \hfil\\
